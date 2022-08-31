@@ -4,16 +4,24 @@ find_package( DD4hep REQUIRED COMPONENTS DDCore DDG4 )
 #find_package(Acts REQUIRED COMPONENTS Core PluginIdentification PluginTGeo PluginDD4hep )
 
 #-----------------------------------------------------------------------------------
-set(a_lib_name my_insert)
-dd4hep_add_plugin(${a_lib_name} SOURCES src/*.cpp
+set(PROJECT_NAME eic_endcap_insert)
+dd4hep_add_plugin(${PROJECT_NAME} SOURCES src/*.cpp
   )
-target_link_libraries(${a_lib_name}
+target_link_libraries(${PROJECT_NAME}
   PUBLIC DD4hep::DDCore  DD4hep::DDRec
   #ActsCore ActsPluginDD4hep
   )
 
 #-----------------------------------------------------------------------------------
-install(DIRECTORY compact/
-    DESTINATION share/${PROJECT_NAME}/${a_lib_name}
-    FILES_MATCHING PATTERN "*.xml"
+# Moving compact, scripts, and hepmc_generation to install share directory
+install(DIRECTORY compact scripts hepmc_generation ip6
+    DESTINATION share/${PROJECT_NAME}
+    )
+# Moving main XML file to install share directory
+INSTALL(FILES endcapP_insert.xml
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/
+    )
+# Moving setup script to install directory
+INSTALL(FILES scripts/insert_setup.sh
+    DESTINATION ${CMAKE_INSTALL_PREFIX}
     )
