@@ -20,4 +20,4 @@
 /gps/ang/minphi 0 degree
 /gps/ang/maxphi 360 degree
 
-/run/beamOn 1000
+/run/beamOn 10

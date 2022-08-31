@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Input simulation parameters
 particle="pi-"
@@ -9,7 +9,8 @@ theta_high=177.17
 phi_low=0
 phi_high=360
 
-gps_file="gps.mac"
+gps_file="${INSERT_PATH}/scripts/gps.mac"
+
 # Output file names
 info_string="${particle}_${beam_energy}GeV_theta_${theta_low}deg_${theta_high}deg"
 simfile="insert_sim_${info_string}.edm4hep.root"
@@ -27,9 +28,9 @@ sed -i "s/\/run\/beamOn .*/\/run\/beamOn $num_events/" $gps_file
 # Running simulation
 npsim  --runType run  --enableG4GPS \
    --macroFile ${gps_file} \
-   --compactFile endcapP_insert.xml \
+   --compactFile ${INSERT_PATH}/endcapP_insert.xml \
    --outputFile ${simfile}  || exit
 
 # Running reconstruction
 export JUGGLER_SIM_FILE=${simfile} JUGGLER_REC_FILE=${recofile} JUGGLER_N_EVENTS=${num_events}
-gaudirun.py endcapP_insert_reco.py
+gaudirun.py ${INSERT_PATH}/scripts/endcapP_insert_reco.py
