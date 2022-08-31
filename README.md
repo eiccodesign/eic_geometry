@@ -1,6 +1,5 @@
-# eic_endcap_insert
-
-[![DOI](https://zenodo.org/badge/491633889.svg)](https://zenodo.org/badge/latestdoi/491633889)
+# eic_geometry 
+# NEEDS TO BE UPDATED -- DISREGARD THIS REPO FOR NOW
 
 Getting started
 ---------------------------------
