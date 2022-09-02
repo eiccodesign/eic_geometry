@@ -1,15 +1,21 @@
-cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
-find_package( DD4hep REQUIRED COMPONENTS DDCore DDG4 )
-#find_package(Acts REQUIRED COMPONENTS Core PluginIdentification PluginTGeo PluginDD4hep )
+PROJECT(hadron_endcap
+  LANGUAGES CXX
+  )
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+
+find_package(DD4hep REQUIRED COMPONENTS DDCore DDG4)
 
 #-----------------------------------------------------------------------------------
-set(PROJECT_NAME hadron_endcap)
+dd4hep_configure_output()
+
 dd4hep_add_plugin(${PROJECT_NAME} SOURCES src/*.cpp
   )
 target_link_libraries(${PROJECT_NAME}
   PUBLIC DD4hep::DDCore  DD4hep::DDRec
-  #ActsCore ActsPluginDD4hep
   )
 
 #-----------------------------------------------------------------------------------
@@ -18,10 +24,10 @@ install(DIRECTORY compact scripts hepmc_generation ip6
     DESTINATION share/${PROJECT_NAME}
     )
 # Moving main XML file to install share directory
-INSTALL(FILES endcapP_insert.xml
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/
+INSTALL(FILES hadron_endcap.xml
+    DESTINATION share/${PROJECT_NAME}
     )
 # Moving setup script to install directory
 INSTALL(FILES scripts/insert_setup.sh
-    DESTINATION ${CMAKE_INSTALL_PREFIX}
+    DESTINATION share/${PROJECT_NAME}
     )
