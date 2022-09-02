@@ -1,6 +1,6 @@
 <lccdd>
   <define>
-    <include ref="ip6/definitions.xml" /> 
+    <include ref="ip6/ip6_defs.xml" /> 
     <include ref="compact/definitions.xml" />
     <include ref="compact/configuration_default.xml"/>
   </define>
@@ -21,7 +21,7 @@
   </display>
   
   <comment> Including the central beampipe </comment>
-  <include ref="ip6/central_beampipe.xml" />
+  <include ref="ip6/beampipe.xml" />
 
   <include ref="compact/hcal/hcal_forward_insert.xml"/>
   
