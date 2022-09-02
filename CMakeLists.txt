@@ -4,7 +4,7 @@ find_package( DD4hep REQUIRED COMPONENTS DDCore DDG4 )
 #find_package(Acts REQUIRED COMPONENTS Core PluginIdentification PluginTGeo PluginDD4hep )
 
 #-----------------------------------------------------------------------------------
-set(PROJECT_NAME eic_endcap_insert)
+set(PROJECT_NAME hadron_endcap)
 dd4hep_add_plugin(${PROJECT_NAME} SOURCES src/*.cpp
   )
 target_link_libraries(${PROJECT_NAME}
