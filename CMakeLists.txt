@@ -22,12 +22,9 @@ target_link_libraries(${PROJECT_NAME}
 # Moving compact, scripts, and hepmc_generation to install share directory
 install(DIRECTORY compact scripts hepmc_generation ip6
     DESTINATION share/${PROJECT_NAME}
+    FILE_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE
     )
 # Moving main XML file to install share directory
 INSTALL(FILES hadron_endcap.xml
-    DESTINATION share/${PROJECT_NAME}
-    )
-# Moving setup script to install directory
-INSTALL(FILES scripts/insert_setup.sh
     DESTINATION share/${PROJECT_NAME}
     )
