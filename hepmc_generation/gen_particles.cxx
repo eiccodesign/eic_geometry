@@ -16,7 +16,7 @@
 
 using namespace HepMC3;
 
-// Generate single electron as input to the Insert simulation.
+// Generate single particle as input to the hadron endpcap simulation.
 // --
 // We generate events with a constant polar angle with respect to
 // the proton direction and then rotate so that the events are given
@@ -27,11 +27,11 @@ void gen_particles(
                     const char* out_fname = "gen_particles.hepmc", 
                     TString particle_name = "e-",
                     double th_min = 3., // Minimum polar angle, in degrees
-		    double th_max = 3., // Maximum polar angle, in degrees
-		    double phi_min = 0., // Minimum azimuthal angle, in degrees
+		                double th_max = 3., // Maximum polar angle, in degrees
+		                double phi_min = 0., // Minimum azimuthal angle, in degrees
                     double phi_max = 360., // Maximum azimuthal angle, in degrees
                     double p = 10.,  // Momentum in GeV/c
-		    int dist = 0  //Momentum distribution: 0=fixed, 1=uniform, 2=Gaussian
+		                int dist = 0  //Momentum distribution: 0=fixed, 1=uniform, 2=Gaussian
                   )
 { 
   WriterAscii hepmc_output(out_fname);
