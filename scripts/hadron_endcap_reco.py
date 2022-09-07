@@ -102,12 +102,6 @@ ci_hcal_insert_reco = CalHitReco("ci_hcal_insert_reco",
         thresholdFactor=0.0,
         samplingFraction=ci_hcal_insert_sf,
         **ci_hcal_insert_daq)
-# ci_hcal_insert_merger = CalHitsMerger("ci_hcal_insert_merger",
-#         inputHitCollection=ci_hcal_insert_reco.outputHitCollection,
-#         outputHitCollection="HcalEndcapPInsertHitsRecoXY",
-#         readoutClass="HcalEndcapPInsertHits",
-#         fields=["layer", "slice"],
-#         fieldRefNumbers=[1, 0])
 
 ci_hcal_insert_cl = IslandCluster("ci_hcal_insert_cl",
         inputHitCollection=ci_hcal_insert_reco.outputHitCollection,
@@ -119,7 +113,7 @@ ci_hcal_insert_cl = IslandCluster("ci_hcal_insert_cl",
 ci_hcal_insert_clreco = RecoCoG("ci_hcal_insert_clreco",
         inputProtoClusterCollection=ci_hcal_insert_cl.outputProtoClusterCollection,
         outputClusterCollection="HcalEndcapPInsertClusters",
-        logWeightBase=3.6)
+        logWeightBase=6.2)
 
 # Truth level kinematics
 truth_incl_kin = InclusiveKinematicsTruth("truth_incl_kin",
