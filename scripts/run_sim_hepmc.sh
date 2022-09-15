@@ -44,7 +44,7 @@ simfile="sim_${info_string}.edm4hep.root"
 recofile="reco_${info_string}.edm4hep.root"
 
 # Generating hepmc file
-root -l -b -q "${DETECTOR_PATH}/hepmc_generation/gen_particles.cxx+(\
+root -l -b -q "${DETECTOR_PATH}/hepmc_generation/gen_particles.cxx(\
 ${num_events},\
 \"${hepmcfile}\",\
 \"${particle}\",\
