@@ -67,25 +67,6 @@ ci_hcal_reco = CalHitReco("ci_hcal_reco",
         samplingFraction=ci_hcal_sf,
         **ci_hcal_daq)
 
-ci_hcal_merger = CalHitsMerger("ci_hcal_merger",
-        inputHitCollection=ci_hcal_reco.outputHitCollection,
-        outputHitCollection="HcalEndcapPHitsRecoXY",
-        readoutClass="HcalEndcapPHits",
-        fields=["layer", "slice"],
-        fieldRefNumbers=[1, 0])
-
-ci_hcal_cl = IslandCluster("ci_hcal_cl",
-        inputHitCollection=ci_hcal_merger.outputHitCollection,
-        outputProtoClusterCollection="HcalEndcapPProtoClusters",
-        splitCluster=False,
-        minClusterCenterEdep=30.*MeV,
-        localDistXY=[15.*cm, 15.*cm])
-
-ci_hcal_clreco = RecoCoG("ci_hcal_clreco",
-        inputProtoClusterCollection=ci_hcal_cl.outputProtoClusterCollection,
-        outputClusterCollection="HcalEndcapPClusters",
-        logWeightBase=6.2)
-
 # Hadron Endcap HCal Insert
 ci_hcal_insert_daq = dict(
          dynamicRangeADC=200.*MeV,
@@ -102,19 +83,6 @@ ci_hcal_insert_reco = CalHitReco("ci_hcal_insert_reco",
         thresholdFactor=0.0,
         samplingFraction=ci_hcal_insert_sf,
         **ci_hcal_insert_daq)
-
-ci_hcal_insert_cl = IslandCluster("ci_hcal_insert_cl",
-        inputHitCollection=ci_hcal_insert_reco.outputHitCollection,
-        outputProtoClusterCollection="HcalEndcapPInsertProtoClusters",
-        splitCluster=False,
-        minClusterCenterEdep=30.*MeV,
-        localDistXY=[15.*cm, 15.*cm])
-
-ci_hcal_insert_clreco = RecoCoG("ci_hcal_insert_clreco",
-        inputProtoClusterCollection=ci_hcal_insert_cl.outputProtoClusterCollection,
-        outputClusterCollection="HcalEndcapPInsertClusters",
-        logWeightBase=6.2)
-
 # Truth level kinematics
 truth_incl_kin = InclusiveKinematicsTruth("truth_incl_kin",
         inputMCParticles = "MCParticles",
@@ -131,8 +99,8 @@ podout.outputCommands = ['drop *',
 
 ApplicationMgr(
     TopAlg = [podin,
-            ci_hcal_digi, ci_hcal_reco, ci_hcal_merger, ci_hcal_cl, ci_hcal_clreco,
-            ci_hcal_insert_digi, ci_hcal_insert_reco, ci_hcal_insert_cl, ci_hcal_insert_clreco,
+            ci_hcal_digi, ci_hcal_reco, 
+            ci_hcal_insert_digi, ci_hcal_insert_reco,
 	    truth_incl_kin, podout],
     EvtSel = 'NONE',
     EvtMax = n_events,
