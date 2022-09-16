@@ -43,7 +43,7 @@ from Configurables import Jug__Fast__InclusiveKinematicsTruth as InclusiveKinema
 sim_coll = [
     "MCParticles",
     "HcalEndcapPHits",
-    "HcalEndcapPInsertHits",
+#     "HcalEndcapPInsertHits",
 ]
 
 # input and output
@@ -68,21 +68,21 @@ ci_hcal_reco = CalHitReco("ci_hcal_reco",
         **ci_hcal_daq)
 
 # Hadron Endcap HCal Insert
-ci_hcal_insert_daq = dict(
-         dynamicRangeADC=200.*MeV,
-         capacityADC=32768,
-         pedestalMean=400,
-         pedestalSigma=10)
-ci_hcal_insert_digi = CalHitDigi("ci_hcal_insert_digi",
-         inputHitCollection="HcalEndcapPInsertHits",
-         outputHitCollection="HcalEndcapPInsertHitsDigi",
-         **ci_hcal_insert_daq)
-ci_hcal_insert_reco = CalHitReco("ci_hcal_insert_reco",
-        inputHitCollection=ci_hcal_insert_digi.outputHitCollection,
-        outputHitCollection="HcalEndcapPInsertHitsReco",
-        thresholdFactor=0.0,
-        samplingFraction=ci_hcal_insert_sf,
-        **ci_hcal_insert_daq)
+# ci_hcal_insert_daq = dict(
+#          dynamicRangeADC=200.*MeV,
+#          capacityADC=32768,
+#          pedestalMean=400,
+#          pedestalSigma=10)
+# ci_hcal_insert_digi = CalHitDigi("ci_hcal_insert_digi",
+#          inputHitCollection="HcalEndcapPInsertHits",
+#          outputHitCollection="HcalEndcapPInsertHitsDigi",
+#          **ci_hcal_insert_daq)
+# ci_hcal_insert_reco = CalHitReco("ci_hcal_insert_reco",
+#         inputHitCollection=ci_hcal_insert_digi.outputHitCollection,
+#         outputHitCollection="HcalEndcapPInsertHitsReco",
+#         thresholdFactor=0.0,
+#         samplingFraction=ci_hcal_insert_sf,
+#         **ci_hcal_insert_daq)
 # Truth level kinematics
 truth_incl_kin = InclusiveKinematicsTruth("truth_incl_kin",
         inputMCParticles = "MCParticles",
@@ -100,7 +100,7 @@ podout.outputCommands = ['drop *',
 ApplicationMgr(
     TopAlg = [podin,
             ci_hcal_digi, ci_hcal_reco, 
-            ci_hcal_insert_digi, ci_hcal_insert_reco,
+        #     ci_hcal_insert_digi, ci_hcal_insert_reco,
 	    truth_incl_kin, podout],
     EvtSel = 'NONE',
     EvtMax = n_events,

@@ -23,7 +23,7 @@
   <comment> Including the central beampipe </comment>
   <include ref="ip6/beampipe.xml" />
 
-  <include ref="compact/hcal/hcal_forward_insert.xml"/>
+  <!-- <include ref="compact/hcal/hcal_forward_insert.xml"/> -->
   
   <comment> Including the forward HCal </comment>
   <comment> Change to compact/hcal/hcal_forward_ECCE.xml for ECCE pHCal</comment>
