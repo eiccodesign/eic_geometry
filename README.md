@@ -11,7 +11,7 @@ To change what detectors are simulated, add/remove the desired components in `ha
 
 Some simple parameters for the geometry are contained in `compact/configuration_default.xml`. If you want to simulate without a beampipe and hole, replace `<include ref="compact/configuration_default.xml"/>` with `<include ref="compact/configuration_nohole.xml"/>` and comment out `<include ref="ip6/central_beampipe.xml"/>` in `hadron_endcap.xml`.
 
-#### NOTE: If you adjust any compact or src files, you need to `make install` in your build directory before running the simulation.
+#### NOTE: If you edit any files, you need to `make install` in your build directory before running the simulation.
 
 ## Running the simulation
 `scripts/run_sim_hepmc.sh` generates a HepMC file and feeds it to npsim and DD4hep. The resulting sim file is then sent through Juggler for digitization, reconstruction, and clustering. The sim and reco files are saved.
