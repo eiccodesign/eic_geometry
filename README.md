@@ -5,7 +5,7 @@
 This repository relies on the ip6 repository (commit 45ed8e8a77862dd727aabe5aad943e4adccec020). Make sure to clone and install both repositories. This is done automatically in the `get_frameworks.sh` script in `generate_data`.
 
 ## Editing the simulation
-By default, the simulation includes just the beampipe and the hadron endcap with HCal components: HCal insert (W/Sc + Steel/Sc) & HCal (ATHENA: 20/3 mm Steel/Sc). Files are included for a homogeneous ECal (`compact/ecal/ecal_forward_homogeneous.xml`), a homogeneous ECal insert (`compact/ecal/ecal_forward_insert_homogeneous.xml`), and the ECCE LFHCAL (`compact/hcal/hcal_forward_ECCE.xml`). 
+By default, the simulation includes just the beampipe and the hadron endcap with the HCal (ATHENA: 20/3 mm Steel/Sc). There is also the HCal insert (W/Sc + Steel/Sc), which is currently commented out in `hadron_endcap.xml` and `scripts/hadron_endcap_reco.py`. Uncomment the relevant lines in these files (line 26 in .xml file, lines 46, 71-85, 103 in .py file) and then `make install` in the build directory to include the insert in the simulation. Files are included for a homogeneous ECal (`compact/ecal/ecal_forward_homogeneous.xml`), a homogeneous ECal insert (`compact/ecal/ecal_forward_insert_homogeneous.xml`), and the ECCE LFHCAL (`compact/hcal/hcal_forward_ECCE.xml`). 
 
 To change what detectors are simulated, add/remove the desired components in `hadron_endcap.xml`.
 
