@@ -43,9 +43,11 @@ Some simple parameters for the geometry are contained in `compact/configuration_
 
 To run the simulation, use `$DETECTOR_PATH/scripts/run_sim_hepmc.sh` after sourcing `setup.sh`.
 
-Some basic, adjustable paramaters are listed at the top of `run_sim_hepmc.sh` and the particle type, momentum, and number of events can be fed in with options `-part`, `-p`, and `-n`, respectively.
+Some basic, adjustable paramaters are listed at the top of `run_sim_hepmc.sh` and the particle type, momentum, and number of events can be fed in with options `-part`, `-p`, and `-n`, respectively. You can change the parameters and then reinstall to transfer the changes to the `local` directory.
 
 The simulation can be run from any directory and the output data will be stored in your current working directory. `scripts/hadron_endcap_reco.py` controls the digitization, reconstruction, and clustering.
+
+There is also `loop_energies.sh` that can be sourced to run the simulation over multiple energies.
 
 #### NOTE: If you remove/add any detector components from the simulation, you must also remove/add the related lines in `scripts/hadron_endcap_reco.py`
 
