@@ -2,7 +2,7 @@
 
 ## Installation instructions
 
-Create a directory and install the EIC container there ([installation instructions](https://github.com/eic/eic-shell)). This also sets up a `local` directory where we will install our simulations. 
+Create a directory and install the EIC container there ([installation instructions](https://github.com/eic/eic-shell)). This also sets up a `local` directory where we will install our simulations. Enter the container using `./eic-shell`.
 
 Download and install the IP6 (beampipe) files:
 ```
