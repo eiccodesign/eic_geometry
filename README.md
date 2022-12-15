@@ -1,6 +1,8 @@
 # EIC geometry for eiccodesign
 
 ## Installation instructions
+Note all these installation instructions are carried out automatically in scripts in generate_data.
+
 
 Create a directory and install the EIC container there ([installation instructions](https://github.com/eic/eic-shell)). This also sets up a `local` directory where we will install our simulations. Enter the container using `./eic-shell`.
 
@@ -24,8 +26,11 @@ make install -j8
 cd ../..
 ```
 
-Then source the setup file:
-`source $EIC_SHELL_PREFIX/setup.sh`.
+Then create the following variables:
+```
+export DETECTOR=hadron_endcap
+export DETECTOR_PATH=${EIC_SHELL_PREFIX}/share/${DETECTOR}
+```
 This sets up some variables used in the simulation scripts. 
 ### You must do this everytime you enter the container!
 
