@@ -1,6 +1,3 @@
-'''
-    An example option file to digitize/reconstruct/clustering calorimeter hits
-'''
 from Gaudi.Configuration import *
 import json
 import os
@@ -16,8 +13,11 @@ compact_path = os.path.join(detector_path, detector_name)
 # input arguments from calibration file
 
 # get sampling fractions from system environment variable, 1.0 by default
-ci_hcal_sf = float(os.environ.get("CI_HCAL_SAMP_FRAC", 1.))
-ci_hcal_insert_sf = float(os.environ.get("CI_HCAL_INSERT_SAMP_FRAC", 1.))
+# ci_hcal_sf = float(os.environ.get("CI_HCAL_SAMP_FRAC", 1.))
+# ci_hcal_insert_sf = float(os.environ.get("CI_HCAL_INSERT_SAMP_FRAC", 1.))
+
+ci_hcal_sf = "1."
+ci_hcal_insert_sf = "1."
 
 # input and output
 input_sims = [f.strip() for f in str.split(os.environ["JUGGLER_SIM_FILE"], ",") if f.strip()]
@@ -33,9 +33,6 @@ podioevent = EICDataSvc("EventDataSvc", inputs=input_sims)
 # juggler components
 from Configurables import Jug__Digi__CalorimeterHitDigi as CalHitDigi
 from Configurables import Jug__Reco__CalorimeterHitReco as CalHitReco
-from Configurables import Jug__Reco__CalorimeterHitsMerger as CalHitsMerger
-from Configurables import Jug__Reco__CalorimeterIslandCluster as IslandCluster
-from Configurables import Jug__Reco__ClusterRecoCoG as RecoCoG
 
 from Configurables import Jug__Fast__InclusiveKinematicsTruth as InclusiveKinematicsTruth
 
@@ -43,7 +40,7 @@ from Configurables import Jug__Fast__InclusiveKinematicsTruth as InclusiveKinema
 sim_coll = [
     "MCParticles",
     "HcalEndcapPHits",
-#     "HcalEndcapPInsertHits",
+    "HcalEndcapPInsertHits",
 ]
 
 # input and output
@@ -68,21 +65,21 @@ ci_hcal_reco = CalHitReco("ci_hcal_reco",
         **ci_hcal_daq)
 
 # Hadron Endcap HCal Insert
-# ci_hcal_insert_daq = dict(
-#          dynamicRangeADC=200.*MeV,
-#          capacityADC=32768,
-#          pedestalMean=400,
-#          pedestalSigma=10)
-# ci_hcal_insert_digi = CalHitDigi("ci_hcal_insert_digi",
-#          inputHitCollection="HcalEndcapPInsertHits",
-#          outputHitCollection="HcalEndcapPInsertHitsDigi",
-#          **ci_hcal_insert_daq)
-# ci_hcal_insert_reco = CalHitReco("ci_hcal_insert_reco",
-#         inputHitCollection=ci_hcal_insert_digi.outputHitCollection,
-#         outputHitCollection="HcalEndcapPInsertHitsReco",
-#         thresholdFactor=0.0,
-#         samplingFraction=ci_hcal_insert_sf,
-#         **ci_hcal_insert_daq)
+ci_hcal_insert_daq = dict(
+         dynamicRangeADC=200.*MeV,
+         capacityADC=32768,
+         pedestalMean=400,
+         pedestalSigma=10)
+ci_hcal_insert_digi = CalHitDigi("ci_hcal_insert_digi",
+         inputHitCollection="HcalEndcapPInsertHits",
+         outputHitCollection="HcalEndcapPInsertHitsDigi",
+         **ci_hcal_insert_daq)
+ci_hcal_insert_reco = CalHitReco("ci_hcal_insert_reco",
+        inputHitCollection=ci_hcal_insert_digi.outputHitCollection,
+        outputHitCollection="HcalEndcapPInsertHitsReco",
+        thresholdFactor=0.0,
+        samplingFraction=ci_hcal_insert_sf,
+        **ci_hcal_insert_daq)
 # Truth level kinematics
 truth_incl_kin = InclusiveKinematicsTruth("truth_incl_kin",
         inputMCParticles = "MCParticles",
@@ -95,13 +92,13 @@ podout.outputCommands = ['drop *',
         'keep *Digi',
         'keep *Reco*',
         'keep *Cluster*',
-	'keep Inclusive*']
+	    'keep Inclusive*']
 
 ApplicationMgr(
     TopAlg = [podin,
             ci_hcal_digi, ci_hcal_reco, 
-        #     ci_hcal_insert_digi, ci_hcal_insert_reco,
-	    truth_incl_kin, podout],
+            ci_hcal_insert_digi, ci_hcal_insert_reco,
+	        truth_incl_kin, podout],
     EvtSel = 'NONE',
     EvtMax = n_events,
     ExtSvc = [podioevent],
