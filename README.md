@@ -2,10 +2,35 @@
 
 ## Installation instructions
 
-This repository relies on the ip6 repository (commit 45ed8e8a77862dd727aabe5aad943e4adccec020). Make sure to clone and install both repositories. This is done automatically in the `get_frameworks.sh` script in `generate_data`.
+Create a directory and install the EIC container there ([installation instructions](https://github.com/eic/eic-shell)). This also sets up a `local` directory where we will install our simulations. 
+
+Download and install the IP6 (beampipe) files:
+```
+git clone https://github.com/eic/ip6.git
+cd ip6
+mkdir build && cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=$EIC_SHELL_PREFIX
+make install -j8
+cd ../..
+```
+Then download and install this repository:
+```
+git clone https://github.com/eiccodesign/eic_geometry.git
+cd eic_geometry
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=$EIC_SHELL_PREFIX
+make install -j8
+cd ../..
+```
+
+Then source the setup file:
+`source $EIC_SHELL_PREFIX/setup.sh`.
+This sets up some variables used in the simulation scripts. 
+### You must do this everytime you enter the container!
 
 ## Editing the simulation
-By default, the simulation includes just the beampipe and the hadron endcap with the HCal (ATHENA: 20/3 mm Steel/Sc). There is also the HCal insert (W/Sc + Steel/Sc), which is currently commented out in `hadron_endcap.xml` and `scripts/hadron_endcap_reco.py`. Uncomment the relevant lines in these files (line 26 in .xml file, lines 46, 71-85, 103 in .py file) and then `make install` in the build directory to include the insert in the simulation. Files are included for a homogeneous ECal (`compact/ecal/ecal_forward_homogeneous.xml`), a homogeneous ECal insert (`compact/ecal/ecal_forward_insert_homogeneous.xml`), and the ECCE LFHCAL (`compact/hcal/hcal_forward_ECCE.xml`). 
+By default, the simulation includes just the beampipe, the hadron endcap with the HCal (ATHENA: 20/3 mm Steel/Sc), and the HCal insert (W/Sc + Steel/Sc)  Files are included for a homogeneous ECal (`compact/ecal/ecal_forward_homogeneous.xml`), a homogeneous ECal insert (`compact/ecal/ecal_forward_insert_homogeneous.xml`), and the ECCE LFHCAL (`compact/hcal/hcal_forward_ECCE.xml`). 
 
 To change what detectors are simulated, add/remove the desired components in `hadron_endcap.xml`.
 
@@ -16,16 +41,16 @@ Some simple parameters for the geometry are contained in `compact/configuration_
 ## Running the simulation
 `scripts/run_sim_hepmc.sh` generates a HepMC file and feeds it to npsim and DD4hep. The resulting sim file is then sent through Juggler for digitization, reconstruction, and clustering. The sim and reco files are saved.
 
-To run the simulation, use `$DETECTOR_PATH/scripts/run_sim_hepmc.sh` after sourcing `setup_env.sh` from `generate_data`.
+To run the simulation, use `$DETECTOR_PATH/scripts/run_sim_hepmc.sh` after sourcing `setup.sh`.
 
 Some basic, adjustable paramaters are listed at the top of `run_sim_hepmc.sh` and the particle type, momentum, and number of events can be fed in with options `-part`, `-p`, and `-n`, respectively.
 
-The simulation can be run from any directory and the output data will be stored in your current working directory. `scripts/hadron_endcap_reco.py` controls the digitization, reconstruction, and clustering. The clustering for the HCal insert isn't completely correct curently and needs adjusting (it will still run and generate output files though).
+The simulation can be run from any directory and the output data will be stored in your current working directory. `scripts/hadron_endcap_reco.py` controls the digitization, reconstruction, and clustering.
 
 #### NOTE: If you remove/add any detector components from the simulation, you must also remove/add the related lines in `scripts/hadron_endcap_reco.py`
 
 ## Output
-There will be two output files: a sim file and a reco file. The sim file contains the Geant4 level information while the reco file contains the digitized and reconstructed information. Both contain information about the MCParticles. Use the `XHitsReco` and `XClusters` branches in the reco files, where `X` is a detector name.  
+There will be two output files: a sim file and a reco file. The sim file contains the Geant4 level information while the reco file contains the digitized and reconstructed information. Both contain information about the MCParticles. Use the `XHitsReco` branches in the reco files, where `X` is a detector name.  
 
 <!--
 ## Addressing Homogenous ECal
