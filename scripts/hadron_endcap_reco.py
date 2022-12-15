@@ -34,7 +34,7 @@ podioevent = EICDataSvc("EventDataSvc", inputs=input_sims)
 from Configurables import Jug__Digi__CalorimeterHitDigi as CalHitDigi
 from Configurables import Jug__Reco__CalorimeterHitReco as CalHitReco
 
-from Configurables import Jug__Fast__InclusiveKinematicsTruth as InclusiveKinematicsTruth
+# from Configurables import Jug__Fast__InclusiveKinematicsTruth as InclusiveKinematicsTruth
 
 # branches needed from simulation root file
 sim_coll = [
@@ -80,25 +80,18 @@ ci_hcal_insert_reco = CalHitReco("ci_hcal_insert_reco",
         thresholdFactor=0.0,
         samplingFraction=ci_hcal_insert_sf,
         **ci_hcal_insert_daq)
-# Truth level kinematics
-truth_incl_kin = InclusiveKinematicsTruth("truth_incl_kin",
-        inputMCParticles = "MCParticles",
-        outputInclusiveKinematics = "InclusiveKinematicsTruth"
-)
 
 # Output
 podout.outputCommands = ['drop *',
         'keep MCParticles',
         'keep *Digi',
-        'keep *Reco*',
-        'keep *Cluster*',
-	    'keep Inclusive*']
+        'keep *Reco*']
 
 ApplicationMgr(
     TopAlg = [podin,
             ci_hcal_digi, ci_hcal_reco, 
             ci_hcal_insert_digi, ci_hcal_insert_reco,
-	        truth_incl_kin, podout],
+	    podout],
     EvtSel = 'NONE',
     EvtMax = n_events,
     ExtSvc = [podioevent],
