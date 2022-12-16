@@ -84,10 +84,12 @@ void gen_particles(
     double pz    = pevent * std::cos(th);
     TVector3 pvec(px,py,pz); 
 
+    // Uncomment to fire at angles w.r.t. proton beam instead of electron beam
     //Rotate to lab coordinate system
-    double cross_angle = -25./1000.; //in Rad
-    TVector3 pbeam_dir(sin(cross_angle),0,cos(cross_angle)); //proton beam direction
-    pvec.RotateY(-pbeam_dir.Theta()); // Theta is returned positive, beam in negative X
+    // double cross_angle = -25./1000.; //in Rad
+    // TVector3 pbeam_dir(sin(cross_angle),0,cos(cross_angle)); //proton beam direction
+    // pvec.RotateY(-pbeam_dir.Theta()); // Theta is returned positive, beam in negative X
+
     // type 1 is final state
     // pdgid 11 - electron 0.510 MeV/c^2
     GenParticlePtr p3 = std::make_shared<GenParticle>(
