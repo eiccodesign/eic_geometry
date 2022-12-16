@@ -54,7 +54,7 @@ Some basic, adjustable paramaters are listed at the top of `run_sim_hepmc.sh` an
 - Option 0 is a fixed particle energy
 - Option 1 is a uniform distribution between $\pm$ 50% of the set energy
 - Option 2 is a Gaussian energy distribution with $\sigma = 0.1$ and mean of the set energy
-- Option 3 is a log uniform energy distribution. This is independent of the set energy and will randomly choose energies in {2, 4, 8, 16, 32, 64} GeV for each event.
+- Option 3 is a log uniform energy distribution. This is independent of the set energy and will randomly choose energies in {1, 2, 4, 8, 16, 32, 64} GeV for each event.
 
 
 The simulation can be run from any directory and the output data will be stored in your current working directory. `scripts/hadron_endcap_reco.py` controls the digitization, reconstruction, and clustering.

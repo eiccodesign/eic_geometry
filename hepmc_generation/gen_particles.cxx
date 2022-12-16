@@ -48,8 +48,6 @@ void gen_particles(
   const double mass = particle->Mass();
   const int pdgID = particle->PdgCode();
 
-  std::array<double, 6> loguniform_energies = {2, 4, 8, 16, 32, 64};
-
   for (events_parsed = 0; events_parsed < n_events; events_parsed++) {
 
     //Set the event number
@@ -83,9 +81,9 @@ void gen_particles(
     }
     else if(dist==3)
     {
-      const int num_loguniform_energies = loguniform_energies.size();
-      const int random_index = (int) r1->Uniform(num_loguniform_energies);
-      pevent = loguniform_energies[random_index];
+      const int num_loguniform_energies = 7;
+      const int random_power = (int) r1->Uniform(num_loguniform_energies);
+      pevent = pow(2, random_power);
     }
 
     double px    = pevent * std::cos(phi) * std::sin(th);
