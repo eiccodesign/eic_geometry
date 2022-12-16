@@ -48,7 +48,7 @@ void gen_particles(
   const double mass = particle->Mass();
   const int pdgID = particle->PdgCode();
 
-  std::array<double, 7> loguniform_energies = {2, 4, 8, 16, 32, 64, 128};
+  std::array<double, 6> loguniform_energies = {2, 4, 8, 16, 32, 64};
 
   for (events_parsed = 0; events_parsed < n_events; events_parsed++) {
 
