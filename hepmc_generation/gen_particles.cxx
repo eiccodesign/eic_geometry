@@ -86,7 +86,6 @@ void gen_particles(
       const int num_loguniform_energies = loguniform_energies.size();
       const int random_index = (int) r1->Uniform(num_loguniform_energies);
       pevent = loguniform_energies[random_index];
-      std::cout<<pevent<<std::endl;
     }
 
     double px    = pevent * std::cos(phi) * std::sin(th);
