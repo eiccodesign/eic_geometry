@@ -13,6 +13,7 @@
 #include <TMath.h>
 #include <TDatabasePDG.h>
 #include <TParticlePDG.h>
+#include <array>
 
 using namespace HepMC3;
 
@@ -31,7 +32,7 @@ void gen_particles(
 		                double phi_min = 0., // Minimum azimuthal angle, in degrees
                     double phi_max = 360., // Maximum azimuthal angle, in degrees
                     double p = 10.,  // Momentum in GeV/c
-		                int dist = 0  //Momentum distribution: 0=fixed, 1=uniform, 2=Gaussian
+		                int dist = 0  //Momentum distribution: 0=fixed, 1=uniform, 2=Gaussian, 3=log uniform
                   )
 { 
   WriterAscii hepmc_output(out_fname);
@@ -46,6 +47,8 @@ void gen_particles(
   TParticlePDG *particle = pdg->GetParticle(particle_name);
   const double mass = particle->Mass();
   const int pdgID = particle->PdgCode();
+
+  std::array<double, 7> loguniform_energies = {2, 4, 8, 16, 32, 64, 128};
 
   for (events_parsed = 0; events_parsed < n_events; events_parsed++) {
 
@@ -77,6 +80,13 @@ void gen_particles(
     else if(dist==2){  //Gaussian: Sigma = 0.1*mean
 	while(pevent<0) //Avoid negative values
 		pevent = r1->Gaus(p,0.1*p);
+    }
+    else if(dist==3)
+    {
+      const int num_loguniform_energies = loguniform_energies.size();
+      const int random_index = (int) r1->Uniform(num_loguniform_energies);
+      pevent = loguniform_energies[random_index];
+      std::cout<<pevent<<std::endl;
     }
 
     double px    = pevent * std::cos(phi) * std::sin(th);

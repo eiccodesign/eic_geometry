@@ -17,7 +17,8 @@ theta_min=2.83 # in degrees
 theta_max=2.83 # in degrees
 phi_min=0. # in degrees
 phi_max=360. # in degrees 
-distribution=0 # Momentum distribution: 0=fixed, 1=uniform, 2=Gaussian
+distribution=3 # Momentum distribution: 0=fixed, 1=uniform, 2=Gaussian, 3=log uniform
+# Note: Log uniform is energy independent and will select energies in {2, 4, 8, 16, 32, 64, 128}
 physics_list="FTFP_BERT_HP"
 
 while [ True ]; do
