@@ -41,6 +41,10 @@ done
 
 # Output file names
 info_string="${particle}_${beam_energy}GeV_theta_${theta_min}-${theta_max}deg"
+if [ $distribution == "3" ] 
+then
+   info_string="${particle}_loguniform_theta_${theta_min}-${theta_max}deg"
+fi
 hepmcfile="gen_${info_string}.hepmc"
 simfile="sim_${info_string}.edm4hep.root"
 recofile="reco_${info_string}.edm4hep.root"
