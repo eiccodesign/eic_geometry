@@ -19,7 +19,7 @@ using namespace HepMC3;
 // Generate single particle as input to the hadron endpcap simulation.
 // --
 // We generate events with a constant polar angle with respect to
-// the proton direction and then rotate so that the events are given
+// the electron direction. There is also the option to rotate so that the events are given
 // in normal lab coordinate system
 // --
 void gen_particles(
