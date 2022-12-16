@@ -17,6 +17,7 @@ theta_min=2.83 # in degrees
 theta_max=2.83 # in degrees
 phi_min=0. # in degrees
 phi_max=360. # in degrees 
+distribution=0 # Momentum distribution: 0=fixed, 1=uniform, 2=Gaussian
 physics_list="FTFP_BERT_HP"
 
 while [ True ]; do
@@ -52,7 +53,8 @@ ${theta_min},\
 ${theta_max},\
 ${phi_min},\
 ${phi_max},\
-${beam_energy})"
+${beam_energy},\
+${distribution})"
 
 # Running simulation
 npsim \
