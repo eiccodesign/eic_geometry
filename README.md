@@ -50,6 +50,13 @@ To run the simulation, use `$DETECTOR_PATH/scripts/run_sim_hepmc.sh` after sourc
 
 Some basic, adjustable paramaters are listed at the top of `run_sim_hepmc.sh` and the particle type, momentum, and number of events can be fed in with options `-part`, `-p`, and `-n`, respectively. You can change the parameters and then reinstall to transfer the changes to the `local` directory.
 
+### There is an energy distribution option within `run_sim_hepmc.sh` that changes the energy of events:
+- Option 0 is a fixed particle energy
+- Option 1 is a uniform distribution between $\pm$ 50% of the set energy
+- Option 2 is a Gaussian energy distribution with $\sigma = 0.1$ and mean of the set energy
+- Option 3 is a log uniform energy distribution. This is independent of the set energy and will randomly choose energies in {2, 4, 8, 16, 32, 64, 128} GeV for each event.
+
+
 The simulation can be run from any directory and the output data will be stored in your current working directory. `scripts/hadron_endcap_reco.py` controls the digitization, reconstruction, and clustering.
 
 There is also `loop_energies.sh` that can be sourced to run the simulation over multiple energies.
