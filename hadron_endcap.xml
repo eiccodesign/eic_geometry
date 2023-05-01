@@ -29,6 +29,9 @@
   <comment> Change to compact/hcal/hcal_forward_ECCE.xml for ECCE pHCal</comment>
   <include ref="compact/hcal/hcal_forward_ATHENA.xml"/>
 
+  <comment> Including the forward ECal </comment>
+  <include ref="compact/ecal/ecal_forward_homogeneous.xml"/>
+
   <detectors>
   </detectors>
 
