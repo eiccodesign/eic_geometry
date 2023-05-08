@@ -18,6 +18,7 @@ compact_path = os.path.join(detector_path, detector_name)
 
 ci_hcal_sf = "1."
 ci_hcal_insert_sf = "1."
+ci_ecal_sf = "0.03"
 
 # input and output
 input_sims = [f.strip() for f in str.split(os.environ["JUGGLER_SIM_FILE"], ",") if f.strip()]
@@ -41,6 +42,7 @@ sim_coll = [
     "MCParticles",
     "HcalEndcapPHits",
     "HcalEndcapPInsertHits",
+    "EcalEndcapPHits"
 ]
 
 # input and output
@@ -81,6 +83,26 @@ ci_hcal_insert_reco = CalHitReco("ci_hcal_insert_reco",
         samplingFraction=ci_hcal_insert_sf,
         **ci_hcal_insert_daq)
 
+# Hadron Endcap ECal
+ci_ecal_daq = dict(
+         dynamicRangeADC=3.*GeV,
+         capacityADC=65536,
+         pedestalMean=100,
+         pedestalSigma=0.7)
+ci_ecal_digi = CalHitDigi("ci_ecal_digi",
+         inputHitCollection="EcalEndcapPHits",
+         outputHitCollection="EcalEndcapHitsDigi",
+         scaleResponse=ci_ecal_sf,
+         energyResolutions=[0.00340,0.0009,0.0],
+         **ci_ecal_daq)
+ci_ecal_reco = CalHitReco("ci_ecal_reco",
+        inputHitCollection=ci_ecal_digi.outputHitCollection,
+        outputHitCollection="EcalEndcapPHitsReco",
+        thresholdFactor=5.0,
+        thresholdValue=2.0,
+        samplingFraction=ci_ecal_sf,
+        **ci_ecal_daq)
+
 # Output
 podout.outputCommands = ['drop *',
         'keep MCParticles',
@@ -91,6 +113,7 @@ ApplicationMgr(
     TopAlg = [podin,
             ci_hcal_digi, ci_hcal_reco, 
             ci_hcal_insert_digi, ci_hcal_insert_reco,
+            ci_ecal_digi, ci_ecal_reco,
 	    podout],
     EvtSel = 'NONE',
     EvtMax = n_events,
