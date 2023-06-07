@@ -4,7 +4,7 @@ import os
 import ROOT
 
 from Configurables import ApplicationMgr, EICDataSvc, PodioInput, PodioOutput, GeoSvc
-from GaudiKernel.SystemOfUnits import MeV, GeV, mm, cm, mrad
+from GaudiKernel.SystemOfUnits import MeV, GeV, mm, cm, mrad, ns
 
 detector_name = str(os.environ.get("JUGGLER_DETECTOR", "${DETECTOR}"))
 detector_path = str(os.environ.get("DETECTOR_PATH", "${DETECTOR_PATH}"))
@@ -56,6 +56,7 @@ ci_hcal_daq = dict(
 ci_hcal_digi = CalHitDigi("ci_hcal_digi",
          inputHitCollection="HcalEndcapPHits",
          outputHitCollection="HcalEndcapHitsDigi",
+         timeResolution=1.*ns,
          **ci_hcal_daq)
 ci_hcal_reco = CalHitReco("ci_hcal_reco",
         inputHitCollection=ci_hcal_digi.outputHitCollection,
@@ -73,6 +74,7 @@ ci_hcal_insert_daq = dict(
 ci_hcal_insert_digi = CalHitDigi("ci_hcal_insert_digi",
          inputHitCollection="HcalEndcapPInsertHits",
          outputHitCollection="HcalEndcapPInsertHitsDigi",
+         timeResolution=1.*ns,
          **ci_hcal_insert_daq)
 ci_hcal_insert_reco = CalHitReco("ci_hcal_insert_reco",
         inputHitCollection=ci_hcal_insert_digi.outputHitCollection,
