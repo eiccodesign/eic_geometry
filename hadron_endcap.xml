@@ -1,7 +1,7 @@
 <lccdd>
   <define>
-    <include ref="compact/definitions.xml" />
-    <include ref="compact/configuration_default.xml"/>
+    <include ref="compact/configuration_default.xml" />
+    <include ref="compact/definitions.xml"/>
   </define>
 
   <includes>
