@@ -56,7 +56,7 @@ The unused IDs below are saved for future use.
     <constant name="IPBeampipe_rmax" value="2.501*25.4*mm/2.0"/>
     <constant name="Beampipe_rmax"   value="IPBeampipe_rmax"/>
     <constant name="BeampipeOD"      value="2.0*IPBeampipe_rmax"/>
-    
+
     <documentation>
 
 ## Detector Definition Parameters 
@@ -92,34 +92,11 @@ Examples:
  - We will try to keep the subsystem component name first and the parameter after an "_" (eg, EcalBarrel_length").
 
     </documentation>
-
-    <documentation>
-      ## Rapidity constants
-    </documentation>
-    <constant name="Eta1_1_tan"       value="tan(2*atan(exp(-1.1)))" />
-    <constant name="Eta1_4_tan"       value="tan(2*atan(exp(-1.4)))" />
-    <constant name="Eta3_5_tan"       value="tan(2*atan(exp(-3.5)))" />
-    <constant name="Eta3_6_tan"       value="tan(2*atan(exp(-3.6)))" />
-    <constant name="Eta3_7_tan"       value="tan(2*atan(exp(-3.7)))" />
-    <constant name="Eta3_8_tan"       value="tan(2*atan(exp(-3.8)))" />
-    <constant name="Eta3_9_tan"       value="tan(2*atan(exp(-3.9)))" />
-    <constant name="Eta4_0_tan"       value="tan(2*atan(exp(-4.0)))" />
-    <constant name="Eta4_1_tan"       value="tan(2*atan(exp(-4.1)))" />
-    <constant name="Eta4_2_tan"       value="tan(2*atan(exp(-4.2)))" />
-    <constant name="Eta4_3_tan"       value="tan(2*atan(exp(-4.3)))" />
-    <constant name="Eta4_4_tan"       value="tan(2*atan(exp(-4.4)))" />
-    <constant name="Eta4_5_tan"       value="tan(2*atan(exp(-4.5)))" />
-    <constant name="Eta4_6_tan"       value="tan(2*atan(exp(-4.6)))" />
-    <constant name="Eta4_7_tan"       value="tan(2*atan(exp(-4.7)))" />
-    <constant name="Eta4_8_tan"       value="tan(2*atan(exp(-4.8)))" />
-
     <documentation>
       ### Central Tracking Region
       TrackerBarrel_rmax: also the rmin for the barrel PID system (DIRC)
       Note: The barrel rmax and endcap lengths are the maximum extent allowed for
       the barrel and endcap layers, not the position of the final layer.
-
-
     </documentation>
 
     <constant name="CentralTrackingRegion_rmax"   value="950.0*mm" />
