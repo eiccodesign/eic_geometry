@@ -60,17 +60,17 @@
            HcalEndcapPBackplateThickness" 
         rmin="HcalEndcapP_rmin"
         rmax="HcalEndcapP_rmax"/>
-      <layer repeat="HcalEndcapPLayer_NSteelRepeat" vis="HcalEndcapLayerVis" thickness="HcalEndcapPSingleLayerThickness">
-        <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
-        <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
-      </layer>
       <layer repeat="HcalEndcapPLayer_NTungstenRepeat" vis="HcalEndcapLayerVis" thickness="HcalEndcapPSingleLayerThickness">
         <slice name="Absorber_slice" material="Tungsten" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
         <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
       </layer>
-      <comment> Final layer of tungsten </comment>
+      <layer repeat="HcalEndcapPLayer_NSteelRepeat" vis="HcalEndcapLayerVis" thickness="HcalEndcapPSingleLayerThickness">
+        <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
+        <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
+      </layer>
+      <comment> Final layer of steel </comment>
       <layer repeat="1" thickness = "HcalEndcapPBackplateThickness">
-        <slice name="Absorber_slice" material="Tungsten" thickness="HcalEndcapPBackplateThickness" vis="AnlLight_Gray"/>
+        <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPBackplateThickness" vis="AnlLight_Gray"/>
       </layer>
       <insert>
         <position x="HcalEndcapPInsert_xposition" y="0" z = "0" />
