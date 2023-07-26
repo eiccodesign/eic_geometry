@@ -1,7 +1,7 @@
 <lccdd>
 
-  <info name="hcal_forward_ECCE.xml"
-        title="ECCE LFHCAL with insert cutout"
+  <info name="hcal_forward_ePIC.xml"
+        title="ePIC LFHCAL with insert cutout"
         author="@rymilton"
         url="https://github.com/rymilton"
         status="development"
@@ -12,8 +12,9 @@
     <documentation>
       #### Material Thickness
     </documentation>
-    <constant name="HcalEndcapPAbsorberThickness"       value="1.6 * cm"/>
-    <constant name="HcalEndcapPPolystyreneThickness"    value="0.4 * cm"/>
+    <constant name="HcalEndcapPAbsorberThickness"       value="1.52 * cm"/>
+    <constant name="HcalEndcapPKaptonThickness"         value="0.08 * cm"/>
+    <constant name="HcalEndcapPPolystyreneThickness"    value="0.40 * cm"/>
 
     <documentation>
       - Hcal Endcap N Layers and computed Thickness
@@ -21,10 +22,10 @@
 
     <constant name="HcalEndcapPSingleLayerThickness"
              value="HcalEndcapPAbsorberThickness + HcalEndcapPPolystyreneThickness"/>
-    <comment> FIXME: Need actual values once they are decided upon </comment>
-    <constant name="HcalEndcapPLayer_NSteelRepeat" value="HcalEndcapP_ECCE_numSteelScLayers"/>
-    <constant name="HcalEndcapPLayer_NTungstenRepeat" value="HcalEndcapP_ECCE_numTungstenScLayers"/>
+    <constant name="HcalEndcapPLayer_NSteelRepeat" value="HcalEndcapP_ePIC_numSteelScLayers"/>
+    <constant name="HcalEndcapPLayer_NTungstenRepeat" value="HcalEndcapP_ePIC_numTungstenScLayers"/>
 
+    <constant name="HcalEndcapPFrontplateThickness" value="HcalEndcapPKaptonThickness + HcalEndcapPPolystyreneThickness"/>
     <constant name="HcalEndcapPBackplateThickness" value="HcalEndcapPAbsorberThickness"/>
   </define>
 
@@ -42,10 +43,12 @@
     <documentation>
       ### Forward (Positive Z) Endcap Hadronic Calorimeter
       
-      This is the ECCE LFHCAL design without individual tower placements and electronics
-      The original design was 60 layers of Steel/Sc and 10 layers of W/Sc, both 1.6 cm/0.4 cm
-      This is too long, so 10 layers of steel were removed as a placeholder until the final design is chosen
-
+      This is the ePIC LFHCAL design without individual tower placements and electronics
+      Layer design from ePIC repository:
+        - Front layer of PCB + scintillator
+        - HcalEndcapPLayer_NTungstenRepeat layers of tungsten + PCB + scintillator
+        - HcalEndcapPLayer_NSteelRepeat layers of steel + PCB + scintillator
+        - Backplate of steel
       The HCal forward insert shape is cut out from this detector
     </documentation>
     <detector
@@ -55,17 +58,27 @@
       readout="HcalEndcapPHits">
       <position x="0" y="0" z="HcalEndcapP_zmin"/>
       <dimensions
-        z="HcalEndcapPSingleLayerThickness * HcalEndcapPLayer_NSteelRepeat +
+        z="HcalEndcapPFrontplateThickness +
            HcalEndcapPSingleLayerThickness * HcalEndcapPLayer_NTungstenRepeat +
+           HcalEndcapPSingleLayerThickness * HcalEndcapPLayer_NSteelRepeat +
            HcalEndcapPBackplateThickness" 
         rmin="HcalEndcapP_rmin"
         rmax="HcalEndcapP_rmax"/>
-      <layer repeat="HcalEndcapPLayer_NTungstenRepeat" vis="HcalEndcapLayerVis" thickness="HcalEndcapPSingleLayerThickness">
-        <slice name="Absorber_slice" material="Tungsten" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
+      <comment> Front layer of PCB + sctintillator </comment>
+      <layer repeat="1" vis="HcalEndcapLayerVis" thickness="HcalEndcapPFrontplateThickness">
+        <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
         <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
       </layer>
+      <comment> Layers of Tungsten + PCB + sctintillator </comment>
+      <layer repeat="HcalEndcapPLayer_NTungstenRepeat" vis="HcalEndcapLayerVis" thickness="HcalEndcapPSingleLayerThickness">
+        <slice name="Absorber_slice" material="Tungsten" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
+        <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
+        <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
+      </layer>
+      <comment> Layers of Steel + PCB + sctintillator </comment>
       <layer repeat="HcalEndcapPLayer_NSteelRepeat" vis="HcalEndcapLayerVis" thickness="HcalEndcapPSingleLayerThickness">
         <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
+        <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
         <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
       </layer>
       <comment> Final layer of steel </comment>
