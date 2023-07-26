@@ -67,19 +67,19 @@
       <comment> Front layer of PCB + sctintillator </comment>
       <layer repeat="1" vis="HcalEndcapLayerVis" thickness="HcalEndcapPFrontplateThickness">
         <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
-        <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
+        <slice name="Scintillator_slice" material="Polystyrene" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
       </layer>
       <comment> Layers of Tungsten + PCB + sctintillator </comment>
       <layer repeat="HcalEndcapPLayer_NTungstenRepeat" vis="HcalEndcapLayerVis" thickness="HcalEndcapPSingleLayerThickness">
         <slice name="Absorber_slice" material="Tungsten" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
         <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
-        <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
+        <slice name="Scintillator_slice" material="Polystyrene" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
       </layer>
       <comment> Layers of Steel + PCB + sctintillator </comment>
       <layer repeat="HcalEndcapPLayer_NSteelRepeat" vis="HcalEndcapLayerVis" thickness="HcalEndcapPSingleLayerThickness">
         <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
         <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
-        <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
+        <slice name="Scintillator_slice" material="Polystyrene" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
       </layer>
       <comment> Final layer of steel </comment>
       <layer repeat="1" thickness = "HcalEndcapPBackplateThickness">
