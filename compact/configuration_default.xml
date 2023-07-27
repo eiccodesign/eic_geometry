@@ -2,7 +2,7 @@
     <documentation>
       Default insert configuration for angled beampipe
       Forward HCal and forward HCal insert will add a backlayer of only absorber
-      ePIC HCal design will include a front layer of PCB + scintilator
+      ePIC HCal design will include a front layer of kapton + scintilator
     </documentation>
     <constant name="HcalEndcapPInsert_zmin"                   value="380*cm"/>
     <constant name="HcalEndcapPInsert_xposition"              value="-10*cm"/>
