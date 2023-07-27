@@ -45,9 +45,9 @@
       
       This is the ePIC LFHCAL design without individual tower placements and electronics
       Layer design from ePIC repository:
-        - Front layer of PCB + scintillator
-        - HcalEndcapPLayer_NTungstenRepeat layers of tungsten + PCB + scintillator
-        - HcalEndcapPLayer_NSteelRepeat layers of steel + PCB + scintillator
+        - Front layer of kapton + scintillator
+        - HcalEndcapPLayer_NTungstenRepeat layers of tungsten + kapton + scintillator
+        - HcalEndcapPLayer_NSteelRepeat layers of steel + kapton + scintillator
         - Backplate of steel
       The HCal forward insert shape is cut out from this detector
     </documentation>
@@ -64,18 +64,18 @@
            HcalEndcapPBackplateThickness" 
         rmin="HcalEndcapP_rmin"
         rmax="HcalEndcapP_rmax"/>
-      <comment> Front layer of PCB + sctintillator </comment>
+      <comment> Front layer of kapton + sctintillator </comment>
       <layer repeat="1" vis="HcalEndcapLayerVis" thickness="HcalEndcapPFrontplateThickness">
         <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
         <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
       </layer>
-      <comment> Layers of Tungsten + PCB + sctintillator </comment>
+      <comment> Layers of Tungsten + kapton + sctintillator </comment>
       <layer repeat="HcalEndcapPLayer_NTungstenRepeat" vis="HcalEndcapLayerVis" thickness="HcalEndcapPSingleLayerThickness">
         <slice name="Absorber_slice" material="Tungsten" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
         <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
         <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
       </layer>
-      <comment> Layers of Steel + PCB + sctintillator </comment>
+      <comment> Layers of Steel + kapton + sctintillator </comment>
       <layer repeat="HcalEndcapPLayer_NSteelRepeat" vis="HcalEndcapLayerVis" thickness="HcalEndcapPSingleLayerThickness">
         <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
         <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
