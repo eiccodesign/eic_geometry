@@ -21,7 +21,7 @@
     </documentation>
 
     <constant name="HcalEndcapPSingleLayerThickness"
-             value="HcalEndcapPAbsorberThickness + HcalEndcapPPolystyreneThickness"/>
+             value="HcalEndcapPAbsorberThickness + HcalEndcapPKaptonThickness + HcalEndcapPPolystyreneThickness"/>
     <constant name="HcalEndcapPLayer_NSteelRepeat" value="HcalEndcapP_ePIC_numSteelScLayers"/>
     <constant name="HcalEndcapPLayer_NTungstenRepeat" value="HcalEndcapP_ePIC_numTungstenScLayers"/>
 
