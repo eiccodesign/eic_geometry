@@ -10,14 +10,8 @@
     <gdmlFile ref="compact/materials.xml"/>
   </includes>
 
-  <limits>
-  </limits>
-
-  <regions>
-  </regions>
-
   <display>
-  <include ref="compact/colors.xml" />
+    <include ref="compact/colors.xml" />
   </display>
   
   <comment> Including the central beampipe </comment>
@@ -28,17 +22,5 @@
   <comment> Including the forward HCal </comment>
   <comment> Change to compact/hcal/hcal_forward_ePIC.xml for ePIC pHCal</comment>
   <include ref="compact/hcal/hcal_forward_ePIC.xml"/>
-
-  <detectors>
-  </detectors>
-
-  <readouts>
-  </readouts>
-
-  <plugins>
-  </plugins>
-
-  <fields>
-  </fields>
 
 </lccdd>
