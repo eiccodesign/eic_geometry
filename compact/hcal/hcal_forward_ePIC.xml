@@ -33,15 +33,6 @@
     <constant name="HcalEndcapPBackLayerThickness" value="HcalEndcapPAbsorberThickness + 3.75 * cm + HcalEndcapPModulePlateThickness"/>
   </define>
 
-  <limits>
-  </limits>
-
-  <regions>
-  </regions>
-
-  <display>
-  </display>
-
   <!-- Define detector -->
   <detectors>
     <documentation>
