@@ -8,8 +8,8 @@
     <constant name="HcalEndcapPInsert_xposition"              value="-10*cm"/>
     <constant name="HcalEndcapPInsert_width"                  value="59.6*cm"/>
     <constant name="HcalEndcapPInsert_height"                 value="59.7485*cm"/>
-    <constant name="HcalEndcapPInsert_numTungstenScLayers"    value="30"/>
-    <constant name="HcalEndcapPInsert_numSteelScLayers"       value="24"/>
+    <constant name="HcalEndcapPInsert_numTungstenScLayers"    value="4"/>
+    <constant name="HcalEndcapPInsert_numSteelScLayers"       value="60"/>
     <constant name="HcalEndcapPInsert_opening_hole_radius"    value="15.*cm"/>
     <constant name="HcalEndcapPInsert_final_hole_radius"      value="17.25*cm"/>
 
