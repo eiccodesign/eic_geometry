@@ -59,7 +59,7 @@
            HcalEndcapPBackLayerThickness" 
         rmin="HcalEndcapP_rmin"
         rmax="HcalEndcapP_rmax"/>
-      <comment> Front layer of kapton + sctintillator </comment>
+      <comment> Front layer of Steel +  kapton + sctintillator </comment>
       <layer repeat="1" vis="HcalEndcapLayerVis" thickness="HcalEndcapPFrontLayerThickness">
         <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPModulePlateThickness" vis="AnlLight_Gray"/>
         <slice name="Air_slice" material="Air" thickness="HcalEndcapPAirThickness" vis="AnlOrange"/>
@@ -80,7 +80,7 @@
         <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
         <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
       </layer>
-      <comment> Final layer of steel </comment>
+      <comment> Final layer of Steel + air gap + steel module backplate </comment>
       <layer repeat="1" thickness = "HcalEndcapPBackLayerThickness">
         <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
         <slice name="Air_slice" material="Air" thickness="3.75*cm"/>
