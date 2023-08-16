@@ -127,9 +127,20 @@
       <layer repeat="1" thickness = "HcalEndcapPInsertBackplateThickness">
         <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPInsertBackplateThickness" vis="AnlGray"/>
       </layer>
-      <beampipe_hole 
+      <documentation>
+        initial_hole_radius: Hole radius in first layer
+        final_hole_radius: Hole radius in steel backplate
+        initial_hole_x/y: Hole x/y position (global coordinates) in first layer
+        final_hole_x/y: Hole x/y position (global coordinates) in steel backplate
+        Initial hole parameters are the same for the hole in the ecal insert
+      </documentation>
+      <beampipe_hole
         initial_hole_radius="HcalEndcapPInsert_opening_hole_radius"
         final_hole_radius="HcalEndcapPInsert_final_hole_radius"
+        initial_hole_x="HcalEndcapPInsert_opening_hole_xpos"
+        final_hole_x="HcalEndcapPInsert_final_hole_xpos"
+        initial_hole_y="HcalEndcapPInsert_opening_hole_ypos"
+        final_hole_y="HcalEndcapPInsert_final_hole_ypos"
       />
     </detector>
   </detectors>
