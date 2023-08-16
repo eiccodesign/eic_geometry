@@ -62,7 +62,7 @@
       />
       <layer repeat="HcalEndcapP_ATHENA_numSteelScLayers" thickness = "HcalEndcapPSingleLayerThickness">
         <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
-        <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPScintillatorThickness" vis="AnlOrange" sensitive="yes"/>
+        <slice name="Scintillator_slice" material="Polystyrene" thickness="HcalEndcapPScintillatorThickness" vis="AnlOrange" sensitive="yes"/>
         <slice name="Air_slice" material="Air" thickness="HcalEndcapPAirThickness" vis="Invisible"/>
       </layer>
       <comment> Final layer of steel </comment>

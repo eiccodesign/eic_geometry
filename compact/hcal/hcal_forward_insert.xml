@@ -83,9 +83,9 @@
         <slice name="Absorber_slice" material="Tungsten" thickness="HcalEndcapPInsertAbsorberThickness" vis="AnlBlue"/>
         <slice name="Air_slice" material="Air" thickness="HcalEndcapPInsertAirThickness"/>
         <slice name="ScintCover_slice" material="Aluminum" thickness="HcalEndcapPInsertScintillatorCoverThickness"/> 
-        <slice name="ESRFoil_slice" material="Polystyrole" thickness="HcalEndcapPInsertESRFoilThickness"/> 
-        <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPInsertPolystyreneThickness" vis="AnlOrange" sensitive="true"/>
-        <slice name="ESRFoil_slice" material="Polystyrole" thickness="HcalEndcapPInsertESRFoilThickness"/>
+        <slice name="ESRFoil_slice" material="Polystyrene" thickness="HcalEndcapPInsertESRFoilThickness"/> 
+        <slice name="Scintillator_slice" material="Polystyrene" thickness="HcalEndcapPInsertPolystyreneThickness" vis="AnlOrange" sensitive="true"/>
+        <slice name="ESRFoil_slice" material="Polystyrene" thickness="HcalEndcapPInsertESRFoilThickness"/>
         <slice name="PCB_slice" material="Fr4" thickness="HcalEndcapPInsertPCBThickness"/>
         <slice name="Air_slice" material="Air" thickness="HcalEndcapPInsertAirThickness"/>
       </layer>
@@ -94,9 +94,9 @@
         <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPInsertAbsorberThickness" vis="AnlGray"/>
         <slice name="Air_slice" material="Air" thickness="HcalEndcapPInsertAirThickness"/>
         <slice name="ScintCover_slice" material="Aluminum" thickness="HcalEndcapPInsertScintillatorCoverThickness"/> 
-        <slice name="ESRFoil_slice" material="Polystyrole" thickness="HcalEndcapPInsertESRFoilThickness"/> 
-        <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPInsertPolystyreneThickness" vis="AnlOrange" sensitive="true"/>
-        <slice name="ESRFoil_slice" material="Polystyrole" thickness="HcalEndcapPInsertESRFoilThickness"/>
+        <slice name="ESRFoil_slice" material="Polystyrene" thickness="HcalEndcapPInsertESRFoilThickness"/> 
+        <slice name="Scintillator_slice" material="Polystyrene" thickness="HcalEndcapPInsertPolystyreneThickness" vis="AnlOrange" sensitive="true"/>
+        <slice name="ESRFoil_slice" material="Polystyrene" thickness="HcalEndcapPInsertESRFoilThickness"/>
         <slice name="PCB_slice" material="Fr4" thickness="HcalEndcapPInsertPCBThickness"/>
         <slice name="Air_slice" material="Air" thickness="HcalEndcapPInsertAirThickness"/>
       </layer>
