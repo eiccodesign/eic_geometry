@@ -100,7 +100,8 @@
   <readouts>
     <readout name="HcalEndcapPHits">
       <segmentation type="CartesianGridXY" grid_size_x="50 * mm" grid_size_y="50 * mm"/>
-      <id>system:8,barrel:3,module:4,layer:8,slice:5,x:32:-16,y:-16</id>
+      <id>system:8,layer:8,slice:8,x:32:-16,y:-16</id>
+      
     </readout>
   </readouts>
 
