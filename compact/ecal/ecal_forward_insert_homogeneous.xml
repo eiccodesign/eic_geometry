@@ -70,9 +70,19 @@
         <slice name="LightGuide_slice" material="Plexiglass" thickness="EcalEndcapPInsertLightGuideThickness" vis="AnlBlue"/>
         <slice name="Scintillator_slice" material="AvgTungstenScFi" thickness="EcalEndcapPInsertScintillatorThickness" vis="AnlOrange" sensitive="true"/> 
       </layer>
-      <beampipe_hole 
+      <documentation>
+        initial_hole_radius: Hole radius at front of first layer
+        final_hole_radius: Hole radius at front of final layer. For the ecal insert, the hole radius is constant
+        initial_hole_x/y: Hole x/y position (global coordinates) in first layer
+        final_hole_x/y: Hole x/y position (global coordinates) in final layer. For the ecal insert, the hole does not change position
+      </documentation>
+      <beampipe_hole
         initial_hole_radius="EcalEndcapPInsert_opening_hole_radius"
         final_hole_radius="EcalEndcapPInsert_final_hole_radius"
+        initial_hole_x="EcalEndcapPInsert_opening_hole_xpos"
+        final_hole_x="EcalEndcapPInsert_final_hole_xpos"
+        initial_hole_y="EcalEndcapPInsert_opening_hole_ypos"
+        final_hole_y="EcalEndcapPInsert_final_hole_ypos"
       />
     </detector>
   </detectors>
