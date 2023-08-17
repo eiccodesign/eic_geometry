@@ -35,7 +35,7 @@ This sets up some variables used in the simulation scripts.
 ### You must do this everytime you enter the container!
 
 ## Editing the simulation
-By default, the simulation includes just the beampipe, the hadron endcap with the HCal (ATHENA: 20/3 mm Steel/Sc), and the HCal insert (W/Sc + Steel/Sc)  Files are included for a homogeneous ECal (`compact/ecal/ecal_forward_homogeneous.xml`), a homogeneous ECal insert (`compact/ecal/ecal_forward_insert_homogeneous.xml`), and the ECCE LFHCAL (`compact/hcal/hcal_forward_ECCE.xml`). 
+By default, the simulation includes just the beampipe, the hadron endcap with the HCal (ATHENA: 20/3 mm Steel/Sc), and the HCal insert (W/Sc + Steel/Sc)  Files are included for a homogeneous ECal (`compact/ecal/ecal_forward_homogeneous.xml`), a homogeneous ECal insert (`compact/ecal/ecal_forward_insert_homogeneous.xml`), and the ePIC LFHCAL (`compact/hcal/hcal_forward_ECCE.xml`). 
 
 To change what detectors are simulated, add/remove the desired components in `hadron_endcap.xml`.
 
@@ -70,7 +70,7 @@ There will be two output files: a sim file and a reco file. The sim file contain
 ## Addressing Homogenous ECal
 To avoid high memory usage, the ECal and ECal insert use a mixed material of W/Polystyrene where the weight percentages are calculated based on the empirical weight and density of a prototype W/ScFi ECal. To incorporate the sampling fraction of the W/ScFi, a smearing procedure is needed: $E_{tower} = \mathrm{gRandom->Gaus}\left(E_{tower}*.03, \sigma\right)$, where $\sigma = E_{tower}\sqrt{a^2/E_{tower} + b^2}$, $a = 0.1$, and $b = 0.0015$. $\mathrm{gRandom}$ here is ROOT's random generator. This maintains the mean of W/ScFi and reproduces fluctuations with a random Gaussian. See [this presentation](https://github.com/rymilton/eic_endcap_insert/files/9172710/Smearing.of.mixture.structure.for.EMCal.pdf) (especially slide 3) by Zhiwan Xu, et al. for more details. -->
 
-## Images of simulation geometry
+## Images of simulation geometry (Slightly older model)
 <!--
 Whole endcap:
 
