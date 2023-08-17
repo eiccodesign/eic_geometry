@@ -12,7 +12,9 @@
     <documentation>
       #### Material Thickness
     </documentation>
+
     <constant name="HcalEndcapPAbsorberThickness"       value="1.52 * cm"/>
+    <constant name="HcalEndcapPAirThickness"            value="0.05 * cm"/>
     <constant name="HcalEndcapPKaptonThickness"         value="0.08 * cm"/>
     <constant name="HcalEndcapPPolystyreneThickness"    value="0.40 * cm"/>
 
@@ -21,22 +23,15 @@
     </documentation>
 
     <constant name="HcalEndcapPSingleLayerThickness"
-             value="HcalEndcapPAbsorberThickness + HcalEndcapPKaptonThickness + HcalEndcapPPolystyreneThickness"/>
+             value="HcalEndcapPAbsorberThickness + HcalEndcapPAirThickness + HcalEndcapPKaptonThickness + HcalEndcapPPolystyreneThickness"/>
     <constant name="HcalEndcapPLayer_NSteelRepeat" value="HcalEndcapP_ePIC_numSteelScLayers"/>
     <constant name="HcalEndcapPLayer_NTungstenRepeat" value="HcalEndcapP_ePIC_numTungstenScLayers"/>
 
-    <constant name="HcalEndcapPFrontplateThickness" value="HcalEndcapPKaptonThickness + HcalEndcapPPolystyreneThickness"/>
-    <constant name="HcalEndcapPBackplateThickness" value="HcalEndcapPAbsorberThickness"/>
+    <constant name="HcalEndcapPModulePlateThickness" value="1.5 * cm"/>
+    <constant name="HcalEndcapPFrontLayerThickness" value="HcalEndcapPModulePlateThickness + HcalEndcapPAirThickness + HcalEndcapPKaptonThickness + HcalEndcapPPolystyreneThickness"/>
+    <comment> There is a 3.75 cm air gap between the final back wall of the LFHCAL modules and the steel layer before it </comment>
+    <constant name="HcalEndcapPBackLayerThickness" value="HcalEndcapPAbsorberThickness + 3.75 * cm + HcalEndcapPModulePlateThickness"/>
   </define>
-
-  <limits>
-  </limits>
-
-  <regions>
-  </regions>
-
-  <display>
-  </display>
 
   <!-- Define detector -->
   <detectors>
@@ -45,10 +40,10 @@
       
       This is the ePIC LFHCAL design without individual tower placements and electronics
       Layer design from ePIC repository:
-        - Front layer of kapton + scintillator
+        - Front layer of steel + kapton + scintillator
         - HcalEndcapPLayer_NTungstenRepeat layers of tungsten + kapton + scintillator
         - HcalEndcapPLayer_NSteelRepeat layers of steel + kapton + scintillator
-        - Backplate of steel
+        - Final layer of steel + air gap + steel
       The HCal forward insert shape is cut out from this detector
     </documentation>
     <detector
@@ -58,32 +53,38 @@
       readout="HcalEndcapPHits">
       <position x="0" y="0" z="HcalEndcapP_zmin"/>
       <dimensions
-        z="HcalEndcapPFrontplateThickness +
+        z="HcalEndcapPFrontLayerThickness +
            HcalEndcapPSingleLayerThickness * HcalEndcapPLayer_NTungstenRepeat +
            HcalEndcapPSingleLayerThickness * HcalEndcapPLayer_NSteelRepeat +
-           HcalEndcapPBackplateThickness" 
+           HcalEndcapPBackLayerThickness" 
         rmin="HcalEndcapP_rmin"
         rmax="HcalEndcapP_rmax"/>
-      <comment> Front layer of kapton + sctintillator </comment>
-      <layer repeat="1" vis="HcalEndcapLayerVis" thickness="HcalEndcapPFrontplateThickness">
+      <comment> Front layer of Steel +  kapton + sctintillator </comment>
+      <layer repeat="1" vis="HcalEndcapLayerVis" thickness="HcalEndcapPFrontLayerThickness">
+        <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPModulePlateThickness" vis="AnlLight_Gray"/>
+        <slice name="Air_slice" material="Air" thickness="HcalEndcapPAirThickness" vis="AnlOrange"/>
         <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
-        <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
+        <slice name="Scintillator_slice" material="Polystyrene" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
       </layer>
       <comment> Layers of Tungsten + kapton + sctintillator </comment>
       <layer repeat="HcalEndcapPLayer_NTungstenRepeat" vis="HcalEndcapLayerVis" thickness="HcalEndcapPSingleLayerThickness">
         <slice name="Absorber_slice" material="Tungsten" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
+        <slice name="Air_slice" material="Air" thickness="HcalEndcapPAirThickness" vis="AnlOrange"/>
         <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
-        <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
+        <slice name="Scintillator_slice" material="Polystyrene" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
       </layer>
       <comment> Layers of Steel + kapton + sctintillator </comment>
       <layer repeat="HcalEndcapPLayer_NSteelRepeat" vis="HcalEndcapLayerVis" thickness="HcalEndcapPSingleLayerThickness">
         <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
+        <slice name="Air_slice" material="Air" thickness="HcalEndcapPAirThickness" vis="AnlOrange"/>
         <slice name="Kapton_slice" material="Kapton" thickness="HcalEndcapPKaptonThickness" vis="AnlOrange"/>
-        <slice name="Scintillator_slice" material="PlasticScint126" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
+        <slice name="Scintillator_slice" material="Polystyrene" thickness="HcalEndcapPPolystyreneThickness" vis="AnlOrange" sensitive="yes"/>
       </layer>
-      <comment> Final layer of steel </comment>
-      <layer repeat="1" thickness = "HcalEndcapPBackplateThickness">
-        <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPBackplateThickness" vis="AnlLight_Gray"/>
+      <comment> Final layer of Steel + air gap + steel module backplate </comment>
+      <layer repeat="1" thickness = "HcalEndcapPBackLayerThickness">
+        <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPAbsorberThickness" vis="AnlLight_Gray"/>
+        <slice name="Air_slice" material="Air" thickness="3.75*cm"/>
+        <slice name="Absorber_slice" material="Steel235" thickness="HcalEndcapPModulePlateThickness" vis="AnlLight_Gray"/>
       </layer>
       <insert>
         <position x="HcalEndcapPInsert_xposition" y="0" z = "0" />
@@ -99,7 +100,8 @@
   <readouts>
     <readout name="HcalEndcapPHits">
       <segmentation type="CartesianGridXY" grid_size_x="50 * mm" grid_size_y="50 * mm"/>
-      <id>system:8,barrel:3,module:4,layer:8,slice:5,x:32:-16,y:-16</id>
+      <id>system:8,layer:8,slice:8,x:32:-16,y:-16</id>
+      
     </readout>
   </readouts>
 
