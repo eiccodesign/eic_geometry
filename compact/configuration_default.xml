@@ -1,14 +1,14 @@
   <define>
     <documentation>
       Default insert configuration for angled beampipe
-      ePIC HCal and Hcal insert design will include a front layer of steel + kapton + scintilator, and extra steel at the back
+      ePIC HCal and HCal insert designs will include a front layer of Steel/Sc, and extra steel at the back
     </documentation>
     <constant name="HcalEndcapPInsert_zmin"                   value="359.6*cm"/>
     <constant name="HcalEndcapPInsert_xposition"              value="-10*cm"/>
     <constant name="HcalEndcapPInsert_width"                  value="59.6*cm"/>
     <constant name="HcalEndcapPInsert_height"                 value="59.7485*cm"/>
-    <constant name="HcalEndcapPInsert_numTungstenScLayers"    value="4"/>
-    <constant name="HcalEndcapPInsert_numSteelScLayers"       value="60"/>
+    <constant name="HcalEndcapPInsert_numTungstenScLayers"    value="10"/>
+    <constant name="HcalEndcapPInsert_numSteelScLayers"       value="54"/>
     <constant name="HcalEndcapPInsert_opening_hole_radius"    value="14.61*cm"/>
     <constant name="HcalEndcapPInsert_final_hole_radius"      value="17.17*cm"/>
     <constant name="HcalEndcapPInsert_opening_hole_xpos"      value="-7.20*cm"/>
