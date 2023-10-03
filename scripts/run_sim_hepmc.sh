@@ -19,7 +19,7 @@ phi_min=0. # in degrees
 phi_max=360. # in degrees 
 distribution=3 # Momentum distribution: 0=fixed, 1=uniform, 2=Gaussian, 3=log uniform
 # Note: Log uniform is energy independent and will select energies in {1, 2, 4, 8, 16, 32, 64} GeV
-physics_list="FTFP_BERT"
+physics_list="FTFP_BERT_HP"
 
 while [ True ]; do
 if [ "$1" = "--help" -o "$1" = "-h" ]; then
