@@ -13,14 +13,13 @@
 #include <TMath.h>
 #include <TDatabasePDG.h>
 #include <TParticlePDG.h>
-#include <array>
 
 using namespace HepMC3;
 
-// Generate single particle as input to the hadron endpcap simulation.
+// Generate single particle as input to the Insert simulation.
 // --
-// We generate events with a constant polar angle with respect to
-// the electron direction. There is also the option to rotate so that the events are given
+// We generate events with  polar angle with respect to
+// the proton direction and then rotate so that the events are given
 // in normal lab coordinate system
 // --
 void gen_particles(
@@ -31,13 +30,20 @@ void gen_particles(
 		                double th_max = 3., // Maximum polar angle, in degrees
 		                double phi_min = 0., // Minimum azimuthal angle, in degrees
                     double phi_max = 360., // Maximum azimuthal angle, in degrees
-                    double p = 10.,  // Momentum in GeV/c
-		                int dist = 0  //Momentum distribution: 0=fixed, 1=uniform, 2=Gaussian, 3=log uniform
+                    double p_low = 10.,  // Momentum in GeV/c,
+                    double p_high = 100.,
+		                TString dist = "log10continuous"  // Momentum distribution: fixed, uniform, 
+                                              // Gaussian, log10continuous, discrete
                   )
 { 
   WriterAscii hepmc_output(out_fname);
   int events_parsed = 0;
   GenEvent evt(Units::GEV, Units::MM);
+  if(dist == "fixed" && p_low != p_high)
+  {
+    std::cerr << "Energies need to match for fixed distribution!" << std::endl;
+    exit(1);
+  }
 
   // Random number generator
   TRandom3 *r1 = new TRandom3(0); //Use time as random seed
@@ -69,21 +75,31 @@ void gen_particles(
 
     //Total momentum distribution
     double pevent = -1;
-    if(dist==0){ //fixed
-	pevent = p;
+    if(dist=="fixed"){ //fixed
+	    pevent = p_low;
     }
-    else if(dist==1){ //Uniform: +-50% variation
-	pevent = p*(1. + r1->Uniform(-0.5,0.5) );
+    else if(dist == "uniform"){ //Uniform: random between p_low and p_high
+      pevent = r1->Uniform(p_low, p_high);
     }
-    else if(dist==2){  //Gaussian: Sigma = 0.1*mean
-	while(pevent<0) //Avoid negative values
-		pevent = r1->Gaus(p,0.1*p);
+    else if(dist == "gaussian"){  //Gaussian: Sigma = 0.1*mean
+	    while(pevent<0) //Avoid negative values
+		  pevent = r1->Gaus(p_low,0.1*p_low);
     }
-    else if(dist==3)
+    else if(dist == "log10continuous")
     {
-      const int num_loguniform_energies = 7;
+      // For continuous in log10
+      // Set to between 1 and p_high GeV by default
+      double num_log_uniform_energies = r1->Uniform(0, log10(p_high));      
+      pevent = pow(10, num_log_uniform_energies);
+      
+    }
+    else if(dist == "discrete")
+    {
+      // For discrete in log10
+      const int num_loguniform_energies = 16;
       const int random_power = (int) r1->Uniform(num_loguniform_energies);
-      pevent = pow(2, random_power);
+      double random_pow = (random_power+1)*0.125;
+      pevent = (int) pow(10, random_pow);
     }
 
     double px    = pevent * std::cos(phi) * std::sin(th);
@@ -91,12 +107,10 @@ void gen_particles(
     double pz    = pevent * std::cos(th);
     TVector3 pvec(px,py,pz); 
 
-    // Uncomment to fire at angles w.r.t. proton beam instead of electron beam
     //Rotate to lab coordinate system
-    // double cross_angle = -25./1000.; //in Rad
-    // TVector3 pbeam_dir(sin(cross_angle),0,cos(cross_angle)); //proton beam direction
-    // pvec.RotateY(-pbeam_dir.Theta()); // Theta is returned positive, beam in negative X
-
+    double cross_angle = -25./1000.; //in Rad
+    TVector3 pbeam_dir(sin(cross_angle),0,cos(cross_angle)); //proton beam direction
+    pvec.RotateY(-pbeam_dir.Theta()); // Theta is returned positive, beam in negative X
     // type 1 is final state
     // pdgid 11 - electron 0.510 MeV/c^2
     GenParticlePtr p3 = std::make_shared<GenParticle>(
