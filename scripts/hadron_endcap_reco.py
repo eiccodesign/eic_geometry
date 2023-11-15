@@ -128,7 +128,7 @@ ci_ecal_reco = CalHitReco("ci_ecal_reco",
 #         thresholdFactor=5.0,
 #         thresholdValue=2.0,
 #         samplingFraction=ci_ecal_insert_sf,
-#         **ci_ecal_insert_digi)
+#         **ci_ecal_insert_daq)
 
 # Output
 podout.outputCommands = ['drop *',
