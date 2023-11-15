@@ -34,4 +34,7 @@
   <comment> Including the forward ECal </comment>
   <include ref="compact/ecal/ecal_forward_homogeneous.xml"/>
 
+  <!-- <comment> Including the forward ECal insert</comment> -->
+  <!-- <include ref="compact/ecal/ecal_forward_insert_homogeneous.xml"/> -->
+
 </lccdd>
