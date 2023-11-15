@@ -44,7 +44,7 @@ sim_coll = [
     "HcalEndcapPHits",
     "HcalEndcapPInsertHits",
     "EcalEndcapPHits",
-    "EcalEndcapPInsertHits"
+#     "EcalEndcapPInsertHits"
 ]
 
 # input and output
