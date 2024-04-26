@@ -1,0 +1,14 @@
+  <define>
+    <documentation>
+      Default zdc configuration for SIPM-on-tile ZDC
+    </documentation>
+    <constant name="ZDC_zmin"                   value="3580*cm"/>
+    <constant name="ZDC_xposition"              value="0"/>
+    <constant name="ZDC_width"                  value="59.6*cm"/>
+    <constant name="ZDC_height"                 value="59.7485*cm"/>
+    <constant name="ZDC_numSteelScLayers"       value="64"/>
+    <constant name="ZDC_opening_hole_radius"    value="0.0001*cm"/>
+    <constant name="ZDC_final_hole_radius"      value="0.0001*cm"/>
+    <constant name="ZDCstagger"                 value="2"/>
+    <constant name="ZDCHexSideLength"           value="3.13*cm"/>
+  </define>

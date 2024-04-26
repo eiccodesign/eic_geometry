@@ -1,0 +1,22 @@
+<lccdd>
+  <define>
+    <include ref="${DD4hepINSTALL}/DDDetectors/compact/detector_types.xml"/>
+    <!--<include ref="ip6/definitions.xml" /> -->
+    <include ref="compact/definitions.xml" />
+    <include ref="compact/configuration_zdc.xml"/>
+    
+  </define>
+
+  <includes>
+    <gdmlFile ref="compact/elements.xml"/>
+    <gdmlFile ref="compact/materials.xml"/>
+  </includes>
+
+  <display>
+   <include ref="compact/colors.xml" />
+  </display>
+  
+
+  <include ref="compact/zdc/zdc_hcal.xml"/>
+  <!-- <include ref="compact/ecal/ZDC_Crystal_LYSO.xml"/> -->
+</lccdd>

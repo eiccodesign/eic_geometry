@@ -177,6 +177,7 @@ The unused IDs below are saved for future use.
     <constant name="ECalBarrel2_ID"     value="105"/>
     <constant name="ECalEndcapPInsert_ID" value="106"/>
     <constant name="LeakageDetector_ID" value="107"/>
+    <constant name="ZDC_Crystal_ID"  value="108"/>
 
     <documentation> 
       #### (110-119) Hadronic Calorimeter

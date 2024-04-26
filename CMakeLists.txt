@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
-PROJECT(hadron_endcap
+PROJECT(eic_geometry
   LANGUAGES CXX
   )
 
@@ -25,6 +25,6 @@ install(DIRECTORY compact scripts hepmc_generation ip6
     FILE_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE
     )
 # Moving main XML file to install share directory
-INSTALL(FILES hadron_endcap.xml
+INSTALL(FILES hadron_endcap.xml zdc.xml
     DESTINATION share/${PROJECT_NAME}
     )

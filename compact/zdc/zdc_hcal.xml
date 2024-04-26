@@ -1,0 +1,117 @@
+<lccdd>
+
+  <info name="zdc_hcal.xml"
+        title="ZDC SiPM-on-Tile HCal"
+        author="@rymilton"
+        url="https://github.com/rymilton"
+        status="development"
+        version="1.0"
+	  ><comment/></info>
+
+  <define>
+    <documentation>
+      #### Material Thickness
+    </documentation>
+    
+    <constant name="ZDCAirThickness"               value="0.02*cm"/>
+    <constant name="ZDCAbsorberThickness"          value="2*cm"/>
+    <constant name="ZDCScintillatorCoverThickness" value="0.04*cm"/>
+    <constant name="ZDCPolystyreneThickness"       value="0.30*cm"/>
+    <constant name="ZDCPCBThickness"               value="0.08*cm"/>
+    <constant name="ZDCESRFoilThickness"           value="0.015*cm"/>
+    
+    <documentation>
+      - Insert N Layers and computed Thickness
+    </documentation>
+
+    <constant name="ZDCSingleLayerThickness" 
+      value="ZDCAbsorberThickness + 
+             ZDCPolystyreneThickness +
+             ZDCPCBThickness+ZDCESRFoilThickness*2+
+	     2*ZDCAirThickness+ZDCScintillatorCoverThickness"
+    />
+    <constant name="ZDCBackplateThickness" value="ZDCAbsorberThickness"/>
+    <!--<constant name="ZDCLayer_NTungstenRepeat" value="ZDC_numTungstenScLayers"/>-->
+    <constant name="ZDCLayer_NSteelRepeat" value="ZDC_numSteelScLayers"/>
+  </define>
+
+  <limits>
+  </limits>
+
+  <regions>
+  </regions>
+
+  <display>
+  </display>
+
+  <detectors>
+      <documentation>
+      ### Forward (Positive Z) Endcap Insert for Hadronic Calorimeter
+      Insert goes in the middle of the forward endcap HCal -- around the beampipe
+
+      Insert is 30 layers of W/Sc + 20 layers of Steel/Sc + 1 backplate of steel 
+      Each of the 50 layers includes air gaps (front and back of each layer),
+      ESR foil (front and back of scintillator), a PCB, and an aluminum scitnillator cover
+
+      Circular hole is cut out from each layer to account for the beampipe 
+      Hole will change in size and position throughout layers 
+      Due to angled (from crossing angle) and cone-shaped beampipe
+      Hole radius is beampipe radius + 3.85 cm of clearance
+      
+    </documentation>
+    <detector
+      id="HCalEndcapPInsert_ID" 
+      name="ZDC" 
+      type="InsertCalorimeter"
+      readout="ZDCHcalHits"
+    >
+      <position x="ZDC_xposition" y="0*m" z="ZDC_zmin"/>
+      <dimensions 
+        x="ZDC_width"
+        y="ZDC_height"
+        z="ZDCSingleLayerThickness*ZDCLayer_NSteelRepeat +
+           ZDCBackplateThickness"
+      />
+      <constant name = "backplate_thickness" value="ZDCBackplateThickness"/>
+      <comment> Tungsten/Scintillator layers </comment>
+      <comment> Slices will be ordered according to the slice order listed here </comment>
+      <comment> Steel/Sc layers </comment>
+      <layer repeat="ZDCLayer_NSteelRepeat" thickness = "ZDCSingleLayerThickness">
+        <slice name="Absorber_slice" material="Steel235" thickness="ZDCAbsorberThickness" vis="AnlGray"/>
+        <slice name="Air_slice" material="Air" thickness="ZDCAirThickness"/>
+        <slice name="ScintCover_slice" material="Aluminum" thickness="ZDCScintillatorCoverThickness"/> 
+        <slice name="ESRFoil_slice" material="Polystyrole" thickness="ZDCESRFoilThickness"/> 
+        <slice name="Scintillator_slice" material="PlasticScint126" thickness="ZDCPolystyreneThickness" vis="AnlOrange" sensitive="true"/>
+        <slice name="ESRFoil_slice" material="Polystyrole" thickness="ZDCESRFoilThickness"/>
+        <slice name="PCB_slice" material="Fr4" thickness="ZDCPCBThickness"/>
+        <slice name="Air_slice" material="Air" thickness="ZDCAirThickness"/>
+      </layer>
+      <comment> Final layer of steel </comment>
+      <layer repeat="1" thickness = "ZDCBackplateThickness">
+        <slice name="Absorber_slice" material="Steel235" thickness="ZDCBackplateThickness" vis="AnlGray"/>
+      </layer>
+      <beampipe_hole 
+        initial_hole_radius="ZDC_opening_hole_radius"
+        final_hole_radius="ZDC_final_hole_radius"
+      />
+    </detector>
+  </detectors>
+
+  <readouts>
+    <readout name="ZDCHcalHits">
+      <segmentation
+	      type="HexGrid"
+	      side_length="ZDCHexSideLength"
+	      stagger="ZDCstagger"
+	    />
+      <id>system:8,barrel:3,module:4,layer:8,slice:5,x:32:-16,y:-16</id>  
+    </readout>
+  </readouts>
+
+  <plugins>
+  </plugins>
+
+  <fields>
+  </fields>
+
+</lccdd>
