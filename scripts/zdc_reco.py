@@ -65,6 +65,7 @@ ci_zdc_hcal_reco = CalHitReco("ci_zdc_hcal_reco",
         samplingFraction=ci_zdc_hcal_sf,
         **ci_zdc_hcal_daq)
 
+# If using the 20 cm PbWO4 detector, change the dynamic range to 100000 MeV (100 GeV)!
 # ci_zdc_ecal_daq = dict(
 #         dynamicRangeADC=2000.*MeV,
 #         capacityADC=32768,
