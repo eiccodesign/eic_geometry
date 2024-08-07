@@ -115,7 +115,7 @@ void gen_lambda_decay(int n_events = 10000,
     else if(dist == "discrete")
     {
       // For discrete in log10
-      const int num_loguniform_energies = 49; // 36 for up to 300 GeV, 49 for up to 1 TeV
+      const int num_loguniform_energies = 34; // 36 for up to 300 GeV, 49 for up to 1 TeV, 34 for 250 GeV
       const int random_power = (int) r1->Uniform(0, num_loguniform_energies);
       double random_pow = (random_power*0.0423)+1;
       pevent = (int) pow(10, random_pow);
