@@ -20,7 +20,7 @@
   <define>
     <constant name="ZDC_ecal_width"              value="60.0 * cm"/>
     <comment> Moving the z position back by 1.34 cm since the crystals are 1.34 cm shorter than the LYSO crystals  </comment>
-    <constant name="ZDC_r_pos"                   value="3551.34 * cm"/>
+    <constant name="ZDC_r_pos"                   value="3550.67 * cm"/>
     <constant name="ZDC_y_pos"                   value="0.0 * cm"/>
     <constant name="ionCrossingAngle"            value="0"/>
     <constant name="ZDC_Crystal_r_pos"           value="ZDC_r_pos + 5.9 *cm +19.2*cm"/>
