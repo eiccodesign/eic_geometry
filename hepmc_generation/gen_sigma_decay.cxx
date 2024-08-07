@@ -121,8 +121,8 @@ void gen_sigma_decay(int n_events = 10000,
             // For discrete in log10
             const int num_loguniform_energies = 36;
             const int random_power = (int) r1->Uniform(0, num_loguniform_energies);
-            double log_min = log10(100);
-            double log_max = log10(275);
+            double log_min = log10(p_low);
+            double log_max = log10(p_high);
             double random_pow = log_min + random_power * (log_max - log_min) / (num_loguniform_energies - 1);
             pevent = (int) pow(10, random_pow);
         }
