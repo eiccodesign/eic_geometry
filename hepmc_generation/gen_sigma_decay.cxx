@@ -119,9 +119,11 @@ void gen_sigma_decay(int n_events = 10000,
         else if(dist == "discrete")
         {
             // For discrete in log10
-            const int num_loguniform_energies = 34; // 36 for up to 300 GeV, 49 for up to 1 TeV, 34 for 250 GeV
+            const int num_loguniform_energies = 36;
             const int random_power = (int) r1->Uniform(0, num_loguniform_energies);
-            double random_pow = (random_power*0.0423)+1;
+            double log_min = log10(100);
+            double log_max = log10(275);
+            double random_pow = log_min + random_power * (log_max - log_min) / (num_loguniform_energies - 1);
             pevent = (int) pow(10, random_pow);
         }
 
