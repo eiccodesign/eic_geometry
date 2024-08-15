@@ -27,7 +27,7 @@ theta_max=2.83 # in degrees
 phi_min=0. # in degrees
 phi_max=360. # in degrees 
 distribution="log10continuous"
-physics_list="FTFP_BERT_HP"
+physics_list="FTFP_BERT"
 job_id=000
 
 while [ True ]; do
