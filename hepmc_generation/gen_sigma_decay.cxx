@@ -128,7 +128,7 @@ void gen_sigma_decay(int n_events = 10000,
         }
 
         // Define momentum with respect to EIC proton beam direction
-        Double_t sigma_p     = r1->Uniform(p_low, p_high);
+        Double_t sigma_p     = pevent;
         Double_t sigma_phi   = phi;
         Double_t sigma_th    = theta; // Divide by 1000 for radians
         Double_t sigma_px    = sigma_p * TMath::Cos(sigma_phi) * TMath::Sin(sigma_th);
