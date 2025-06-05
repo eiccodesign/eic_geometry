@@ -71,6 +71,12 @@ ci_zdc_hcal_reco = CalHitReco("ci_zdc_hcal_reco",
 #         capacityADC=32768,
 #         pedestalMean=400,
 #         pedestalSigma=3.2)
+# 250 GeV dynamic range settings
+# ci_zdc_ecal_daq = dict(
+#         dynamicRangeADC=250000.*MeV,
+#         capacityADC=65536,
+#         pedestalMean=400,
+#         pedestalSigma=1.0)
 # ci_zdc_ecal_digi = CalHitDigi("ci_zdc_ecal_digi",
 #         inputHitCollection="ZDCEcalHits",
 #         outputHitCollection="ZDCEcalHitsDigi",
