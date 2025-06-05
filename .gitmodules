@@ -1,4 +1,0 @@
-[submodule "eicrecon_for_lambdapaper"]
-	path = eicrecon_for_lambdapaper
-	url = https://github.com/username/eicrecon.git
-	branch = lambda_paper
