@@ -89,16 +89,16 @@ void gen_particles(
     {
       // For continuous in log10
       // Set to between 1 and p_high GeV by default
-      double num_log_uniform_energies = r1->Uniform(0, log10(p_high));      
+      double num_log_uniform_energies = r1->Uniform(log10(p_low), log10(p_high));      
       pevent = pow(10, num_log_uniform_energies);
       
     }
     else if(dist == "discrete")
     {
       // For discrete in log10
-      const int num_loguniform_energies = 16;
-      const int random_power = (int) r1->Uniform(num_loguniform_energies);
-      double random_pow = (random_power+1)*0.125;
+      const int num_loguniform_energies = 34; // 36 for up to 300 GeV, 49 for up to 1 TeV, 34 for 250 GeV
+      const int random_power = (int) r1->Uniform(23, num_loguniform_energies);
+      double random_pow = (random_power*0.0423)+1;
       pevent = (int) pow(10, random_pow);
     }
 
