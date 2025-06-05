@@ -18,6 +18,8 @@ compact_path = os.path.join(detector_path, detector_name)
 
 ci_hcal_sf = "1."
 ci_hcal_insert_sf = "1."
+ci_ecal_sf = "0.03"
+ci_ecal_insert_sf = "0.03"
 
 # input and output
 input_sims = [f.strip() for f in str.split(os.environ["JUGGLER_SIM_FILE"], ",") if f.strip()]
@@ -41,6 +43,8 @@ sim_coll = [
     "MCParticles",
     "HcalEndcapPHits",
     "HcalEndcapPInsertHits",
+#     "EcalEndcapPHits",
+#     "EcalEndcapPInsertHits"
 ]
 
 # input and output
@@ -49,7 +53,7 @@ podout = PodioOutput("out", filename=output_rec)
 
 # Hadron endcap HCal
 ci_hcal_daq = dict(
-         dynamicRangeADC=200.*MeV,
+         dynamicRangeADC=800.*MeV,
          capacityADC=32768,
          pedestalMean=400,
          pedestalSigma=10)
@@ -67,7 +71,7 @@ ci_hcal_reco = CalHitReco("ci_hcal_reco",
 
 # Hadron Endcap HCal Insert
 ci_hcal_insert_daq = dict(
-         dynamicRangeADC=200.*MeV,
+         dynamicRangeADC=800.*MeV,
          capacityADC=32768,
          pedestalMean=400,
          pedestalSigma=10)
@@ -83,6 +87,49 @@ ci_hcal_insert_reco = CalHitReco("ci_hcal_insert_reco",
         samplingFraction=ci_hcal_insert_sf,
         **ci_hcal_insert_daq)
 
+# Hadron Endcap ECal
+# ci_ecal_daq = dict(
+#          dynamicRangeADC=3.*GeV,
+#          capacityADC=65536,
+#          pedestalMean=100,
+#          pedestalSigma=0.7)
+# ci_ecal_digi = CalHitDigi("ci_ecal_digi",
+#          inputHitCollection="EcalEndcapPHits",
+#          outputHitCollection="EcalEndcapHitsDigi",
+#          scaleResponse=ci_ecal_sf,
+#          energyResolutions=[0.00340,0.0009,0.0],
+#          timeResolution=1.*ns,
+#          **ci_ecal_daq)
+# ci_ecal_reco = CalHitReco("ci_ecal_reco",
+#         inputHitCollection=ci_ecal_digi.outputHitCollection,
+#         outputHitCollection="EcalEndcapPHitsReco",
+#         thresholdFactor=5.0,
+#         thresholdValue=2.0,
+#         samplingFraction=ci_ecal_sf,
+#         **ci_ecal_daq)
+
+# Hadron Endcap ECal insert
+# Uncomment this section when the ecal insert is simulated
+# ci_ecal_insert_daq = dict(
+#          dynamicRangeADC=3.*GeV,
+#          capacityADC=65536,
+#          pedestalMean=100,
+#          pedestalSigma=0.7)
+# ci_ecal_insert_digi = CalHitDigi("ci_ecal_insert_daq",
+#          inputHitCollection="EcalEndcapPInsertHits",
+#          outputHitCollection="EcalEndcapInsertHitsDigi",
+#          scaleResponse=ci_ecal_insert_sf,
+#          energyResolutions=[0.00340,0.0009,0.0],
+#          timeResolution=1.*ns,
+#          **ci_ecal_insert_daq)
+# ci_ecal_insert_reco = CalHitReco("ci_ecal_insert_reco",
+#         inputHitCollection=ci_ecal_insert_digi.outputHitCollection,
+#         outputHitCollection="EcalEndcapPInsertHitsReco",
+#         thresholdFactor=5.0,
+#         thresholdValue=2.0,
+#         samplingFraction=ci_ecal_insert_sf,
+#         **ci_ecal_insert_daq)
+
 # Output
 podout.outputCommands = ['drop *',
         'keep MCParticles',
@@ -93,10 +140,12 @@ ApplicationMgr(
     TopAlg = [podin,
             ci_hcal_digi, ci_hcal_reco, 
             ci_hcal_insert_digi, ci_hcal_insert_reco,
+        #     ci_ecal_digi, ci_ecal_reco,
+        # Uncomment this when using the ecal insert
+        #     ci_ecal_insert_digi, ci_ecal_insert_reco, 
 	    podout],
     EvtSel = 'NONE',
     EvtMax = n_events,
-    ExtSvc = [podioevent],
-    OutputLevel=DEBUG
+    ExtSvc = [podioevent]
 )
         
