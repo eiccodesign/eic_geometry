@@ -37,6 +37,6 @@
 
     <constant name="EcalEndcapP_zmin"                         value="329.6*cm"/>
     <constant name="EcalEndcapP_rmin"                         value="0*cm"/>
-    <constant name="EcalEndcapP_rmax"                         value="190*cm"/>
+    <constant name="EcalEndcapP_rmax"                         value="195*cm"/>
     <constant name="EcalEndcapP_numLayers"                    value="1"/>
   </define>
